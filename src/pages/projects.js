@@ -3,8 +3,6 @@ import Layout from "../components/Layout";
 import AnimatedText from "../components/AnimatedText";
 import Link from "next/link";
 import Image from "next/image";
-import {GithubIcon, LinkArrow} from "../components/Icons";
-import Project1 from '../../public/images/projects/agency-website-cover-image.jpg'
 import {motion} from "framer-motion";
 import TransitionEffect from "../components/TransitionEffect";
 import {fetchCommonData} from "@/src/utils/fetchData";
