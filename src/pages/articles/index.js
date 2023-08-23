@@ -80,7 +80,7 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height}) =
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                 />
             </Link>
-            <Link href={link} target={'_blank'}>
+            <Link href={link}>
                 <h2 className="capitalize text-2xl font-bold my-2 mt-4 xs:text-lg">
                     {title}
                 </h2>
