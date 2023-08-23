@@ -1,7 +1,6 @@
 import {fetchCommonData} from "../utils/fetchData";
 import Link from "next/link";
 import Image from "next/image";
-import ProfilePicture from '../../public/images/profile/batman-pic.png'
 import AnimatedText from "../components/AnimatedText";
 import {LinkArrow} from "../components/Icons";
 import HireMe from "../components/HireMe";
