@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import Layout from "../components/Layout";
+import Layout from "@/src/components/layout";
 import AnimatedText from "../components/AnimatedText";
 import {useInView, useMotionValue, useSpring} from "framer-motion";
 // import Skills from "@/components/Skills";

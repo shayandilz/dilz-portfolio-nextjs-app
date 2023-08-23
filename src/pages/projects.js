@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from "../components/Layout";
+import Layout from "@/src/components/layout";
 import AnimatedText from "../components/AnimatedText";
 import Link from "next/link";
 import Image from "next/image";
