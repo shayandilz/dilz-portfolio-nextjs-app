@@ -28,6 +28,7 @@ const BackToTopButton = () => {
     return (
         <button
             aria-label="backtotop"
+            aria-hidden="true"
             className={`${
                 isVisible
                     ? 'fixed bottom-4 right-4 opacity-100'
