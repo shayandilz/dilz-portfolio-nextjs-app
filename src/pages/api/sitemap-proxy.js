@@ -54,8 +54,8 @@ export default async function proxy(req, res) {
         content = replace(content, HOSTNAME_REGEX, FRONTEND_URL);
 
         // Change sitemap xsl file path to local
-        let sitemapFind = '//(.*)main-sitemap.xsl'; // The Yoast internal template.
-        let sitemapReplace = '/sitemap-template.xsl'; // Our custom template.
+        let sitemapFind = '//(.*)main-sitemap.xml'; // The Yoast internal template.
+        let sitemapReplace = '/sitemap-template.xml'; // Our custom template.
         const SITEMAP_XSL_REGEX = new RegExp(sitemapFind, 'g');
         content = replace(content, SITEMAP_XSL_REGEX, sitemapReplace);
     }
