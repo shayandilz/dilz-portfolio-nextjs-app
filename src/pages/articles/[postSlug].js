@@ -43,7 +43,7 @@ const Post = ({favicon, headerFooter, post }) => {
                             <ul className={'text-start'}>
                                 {headings.map((heading, index) => (
                                     <li className={'py-[6px] dark:text-light text-dark hover:underline transition duration-150 ease-in-out'} key={index}>
-                                        <a rel={'nofollow'} href={`#heading-${index}`}>{index}. {heading.text}</a>
+                                        <a rel={'nofollow'} href={`#heading-${index}`}>{heading.text}</a>
                                     </li>
                                 ))}
                             </ul>
