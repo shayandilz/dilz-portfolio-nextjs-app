@@ -87,7 +87,7 @@ const Navbar = ({header, social}) => {
                 </nav>
                 <nav className={'flex justify-center items-center gap-3 flex-wrap'}>
                     {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
-                        <Link key={index} className={'w-9'} href={socialItems.url} target={'_blank'}>
+                        <Link aria-label={socialItems.title} key={index} className={'w-9'} href={socialItems.url} target={'_blank'}>
                             {renderSocialIcon(socialItems.title)}
                         </Link>
                     )) : null}
