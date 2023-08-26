@@ -3,7 +3,6 @@ import * as fs from "fs";
 const Sitemap = () => {
     return null;
 };
-
 export const getServerSideProps = async ({ res }) => {
     const BASE_URL = "https://codecraftconnect.com";
 
