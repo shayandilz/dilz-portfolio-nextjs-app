@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
     reactStrictMode: true,
     images: {
         remotePatterns:[
@@ -11,18 +12,6 @@ const nextConfig = {
             }
         ]
     },
-    async rewrites() {
-        return [
-            {
-                source: '/(.*)sitemap.xml',
-                destination: '/api/sitemap-proxy'
-            },
-            {
-                source: '/sitemap(.*).xml',
-                destination: '/api/sitemap-proxy'
-            }
-        ];
-    }
 
 }
 
