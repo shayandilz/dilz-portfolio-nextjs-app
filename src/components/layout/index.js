@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Navbar from './Navbar'
 import Footer from './Footer';
+import BackToTopButton from "@/src/components/BackToTopButton";
 import {Montserrat} from 'next/font/google';
 import {sanitize} from "@/src/utils/miscellaneous";
 
@@ -60,6 +61,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
             <Navbar header={headerFooter} social={socialAccounts}/>
             <main className={`w-full h-full inline-block z-0 bg-light dark:bg-dark px-20 sm:px-5 ${className}`}>
                 {children}
+                <BackToTopButton />
             </main>
             <Footer/>
         </div>
