@@ -5,10 +5,10 @@ const Sitemap = () => {
 };
 
 export const getServerSideProps = async ({ res }) => {
-    const BASE_URL = "http://localhost:3000";
+    const BASE_URL = "https://codecraftconnect.com";
 
     const staticPaths = fs
-        .readdirSync("pages")
+        .readdirSync("src/pages")
         .filter((staticPage) => {
             return ![
                 "api",
@@ -23,7 +23,7 @@ export const getServerSideProps = async ({ res }) => {
             return `${BASE_URL}/${staticPagePath}`;
         });
 
-    const dynamicPaths = [`${BASE_URL}/name/1`, `${BASE_URL}/name/2`];
+    const dynamicPaths = [`${BASE_URL}/product/1`, `${BASE_URL}/product/2`];
 
     const allPaths = [...staticPaths, ...dynamicPaths];
 
