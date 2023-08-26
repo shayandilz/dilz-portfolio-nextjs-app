@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Navbar from './Navbar'
 import Footer from './Footer';
 import {Montserrat} from 'next/font/google';
+import {sanitize} from "@/src/utils/miscellaneous";
 
 
 const montserrat = Montserrat({
@@ -25,7 +26,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
         og_update,
         og_publish,
         og_modify
-    } = metaData
+    } = metaData ?? {}
     const {width, height, alt, type, url} = og_image ?? {}
     return (
         <div className={` font-mont bg-light dark:bg-dark w-full min-w-screen`}>
@@ -50,9 +51,11 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                 <meta property="article:published_time" content={og_publish}/>
                 <meta property="article:modified_time" content={og_modify}/>
                 <meta name="robots" content={meta_robots.index + ', ' + meta_robots.follow}/>
-                <script type="application/ld+json">
-                    {JSON.stringify(schema)}
-                </script>
+                <script type="application/ld+json"
+                        className={'yoast-schema-graph'}
+                        key={'yoastSchema'}
+                        dangerouslySetInnerHTML={{__html: sanitize(schema)}}
+                />
             </Head>
             <Navbar header={headerFooter} social={socialAccounts}/>
             <main className={`w-full h-full inline-block z-0 bg-light dark:bg-dark px-20 sm:px-5 ${className}`}>
