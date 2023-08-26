@@ -48,7 +48,6 @@ const FeaturedProject = ({type, title, year, img, link, github, category, client
                     <h2 className={'my-4 w-full text-left text-4xl font-bold sm:text-sm'}>{title}</h2>
                 </Link>
                 <div className={'mt-2 flex items-center'}>
-                    {/*<Link className={'w-10'} href={github} target={'_blank'}><GithubIcon/></Link>*/}
                     <Link className={'rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold sm:px-4 sm:text-base'} href={link}
                           target={'_blank'}>Visit Project</Link>
                 </div>
@@ -97,7 +96,6 @@ const Project = ({title, type, img, link, github,year, category, client}) => {
                     <Link className={' text-md font-semibold underline md:text-base'} href={link}
                           target={'_blank'}>Visit Project
                     </Link>
-                    {/*<Link className={'w-8 md:w-6'} href={github} target={'_blank'}><GithubIcon/></Link>*/}
 
                 </div>
             </div>
