@@ -11,6 +11,11 @@ export async function getServerSideProps({ res }) {
            xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
            xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      ${details.map((item) => getSitemapPages(item)).join("")}
+     <sitemap>
+     <loc>
+        http://localhost:3000/sitemapnextjs.xml
+    </loc>
+</sitemap>
   </sitemapindex>`;
     res.setHeader("Content-Type", "text/xml; charset=utf-8");
     res.setHeader(
