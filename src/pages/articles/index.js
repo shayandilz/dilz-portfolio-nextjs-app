@@ -84,7 +84,7 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height}) =
                 <h2 className="capitalize text-2xl font-bold my-2 mt-4 xs:text-lg">
                     {title}
                 </h2>
-                <p className={'text-sm mb-2'}>{summary}</p>
+                <p className={'text-sm mb-2 text-justify'}>{summary}</p>
                 <span className={'text-primary font-semibold'}>{time}</span>
             </Link>
         </li>
@@ -94,7 +94,6 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height}) =
 const Articles = ({favicon, headerFooter, posts, meta}) => {
     // Offset value to exclude the first two posts from featured articles
     const offset = 2;
-
     const featuredPosts = posts.slice(0, offset);
     const regularPosts = posts.slice(offset);
     return (
@@ -105,7 +104,7 @@ const Articles = ({favicon, headerFooter, posts, meta}) => {
             metaData={meta}
         >
             <TransitionEffect/>
-            <div className={'w-full mb-16 flex flex-col items-center justify-center overflow-hidden'}>
+            <div className={' w-full mb-16 flex flex-col items-center justify-center overflow-hidden'}>
                 <section className={'pt-16'}>
                     <AnimatedText text={'Articles'} className={'mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl'}/>
                     <ul className={'grid grid-cols-2 gap-16 lg-gap-8 md:grid-cols-1 md:gap-y-16'}>
@@ -118,11 +117,11 @@ const Articles = ({favicon, headerFooter, posts, meta}) => {
                                 width={post.media.thumbnail_width}
                                 height={post.media.thumbnail_height}
                                 summary={post.excerpt}
-                                time={'2 mins'}
+                                time={post.reading_time + ' minute'}
                             />
                         ))}
                     </ul>
-                    <h2 className={'font-bold text-4xl w-full my-16 text-center dark:text-light'}>All Articles</h2>
+                    <h2 className={'font-bold text-4xl w-full my-16 text-center dark:text-light min-h-screen'}>All Articles</h2>
                     <ul>
                         {regularPosts.map((post) => (
                             <Article

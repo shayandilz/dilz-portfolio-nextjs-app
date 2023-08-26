@@ -27,19 +27,19 @@ const FeaturedProject = ({type, title, year, img, link, github, category, client
             </Link>
             <div className={'w-1/2 flex flex-col items-start justify-between pl-6 lg:w-full lg:pl-0 lg:pt-6'}>
                 <div className={'flex flex-wrap gap-3 items-center justify-start'}>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Type</legend>
                         <h6 className={'font-bold text-primary'}>{type}</h6>
                     </fieldset>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Category</legend>
                         <h6 className={'font-bold text-primary'}>{category[0].name}</h6>
                     </fieldset>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Year</legend>
                         <h6 className={'font-bold text-primary'}>{year}</h6>
                     </fieldset>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Client</legend>
                         <h6 className={'font-bold text-primary'}>{client}</h6>
                     </fieldset>
@@ -48,7 +48,7 @@ const FeaturedProject = ({type, title, year, img, link, github, category, client
                     <h2 className={'my-4 w-full text-left text-4xl font-bold sm:text-sm'}>{title}</h2>
                 </Link>
                 <div className={'mt-2 flex items-center'}>
-                    <Link className={'rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold sm:px-4 sm:text-base'} href={link}
+                    <Link className={'rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold sm:px-4 sm:text-base border hover:bg-light hover:border-dark hover:text-dark transition'} href={link}
                           target={'_blank'}>Visit Project</Link>
                 </div>
             </div>
@@ -72,19 +72,19 @@ const Project = ({title, type, img, link, github,year, category, client}) => {
             </Link>
             <div className={'w-full flex flex-col items-start justify-between mt-4'}>
                 <div className={'flex flex-wrap gap-3 items-center justify-start'}>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Type</legend>
                         <h6 className={'font-bold text-primary'}>{type}</h6>
                     </fieldset>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Category</legend>
                         <h6 className={'font-bold text-primary'}>{category[0].name}</h6>
                     </fieldset>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Year</legend>
                         <h6 className={'font-bold text-primary'}>{year}</h6>
                     </fieldset>
-                    <fieldset className={'text-center border border-dark px-2 pb-2 rounded'}>
+                    <fieldset className={'text-center border border-dark dark:border-light px-2 pb-2 rounded'}>
                         <legend className={'font-bold px-2'}>Client</legend>
                         <h6 className={'font-bold text-primary'}>{client}</h6>
                     </fieldset>
@@ -93,7 +93,7 @@ const Project = ({title, type, img, link, github,year, category, client}) => {
                     <h2 className={'my-3 w-full text-left text-2xl font-bold lg:text-lg sm:text-sm'}>{title}</h2>
                 </Link>
                 <div className={'w-full mt-2 flex items-center justify-between'}>
-                    <Link className={' text-md font-semibold underline md:text-base'} href={link}
+                    <Link className={'rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold sm:px-4 sm:text-base border hover:bg-light hover:border-dark hover:text-dark transition'} href={link}
                           target={'_blank'}>Visit Project
                     </Link>
 

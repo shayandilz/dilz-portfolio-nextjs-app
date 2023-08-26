@@ -3,13 +3,37 @@ import Head from 'next/head';
 import Navbar from './Navbar'
 import Footer from './Footer';
 import BackToTopButton from "@/src/components/BackToTopButton";
-import {Montserrat} from 'next/font/google';
 import {sanitize} from "@/src/utils/miscellaneous";
+import localFont from "@next/font/local";
 
-
-const montserrat = Montserrat({
-    subsets: ['latin'],
-    variable: '--font-mont'
+const CustomFont = localFont({
+    src: [
+        {
+            path: '../../styles/font/monst/woff2/Assistant-Light.woff2',
+            weight: '300',
+            style: 'normal'
+        },
+        {
+            path: '../../styles/font/monst/woff2/Assistant-Regular.woff2',
+            weight: '400',
+            style: 'normal'
+        },
+        {
+            path: '../../styles/font/monst/woff2/Assistant-Medium.woff2',
+            weight: '500',
+            style: 'normal'
+        },
+        {
+            path: '../../styles/font/monst/woff2/Assistant-SemiBold.woff2',
+            weight: '600',
+            style: 'normal'
+        },
+        {
+            path: '../../styles/font/monst/woff2/Assistant-Bold.woff2',
+            weight: '700',
+            style: 'normal'
+        },
+    ]
 })
 const Layout = ({children, favicon, headerFooter, socialAccounts, className = '', siteTitle, metaData}) => {
     const {
@@ -30,7 +54,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
     } = metaData ?? {}
     const {width, height, alt, type, url} = og_image ?? {}
     return (
-        <div className={` font-mont bg-light dark:bg-dark w-full min-w-screen`}>
+        <div className={`${CustomFont.className} bg-light dark:bg-dark w-full min-w-screen`}>
             <Head>
                 <title>{title ?? 'Dilz'}</title>
                 <meta name="description" content={desc}/>
