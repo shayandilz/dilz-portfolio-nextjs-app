@@ -15,6 +15,7 @@
     "axios": "^1.4.0",
     "dompurify": "^3.0.5",
     "framer-motion": "^10.13.1",
+    "isomorphic-unfetch": "^4.0.2",
     "lodash": "^4.17.21",
     "next": "13.4.12",
     "postcss": "8.4.27",
