@@ -33,7 +33,13 @@ function generateNewXmlContent(urls) {
     root.att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
     // Fetch data from URLs and generate XML entries
-    // Here, you would fetch each URL, extract necessary data, and add to the XML
+    urls.forEach(url => {
+        const urlElement = root.ele('url');
+        urlElement.ele('loc', url);
+        // Add other XML elements based on fetched data (if applicable)
+    });
 
+    // Here, you would fetch each URL, extract necessary data, and add to the XML
+    console.log(root.end({ pretty: true }));
     return root.end({ pretty: true });
 }
