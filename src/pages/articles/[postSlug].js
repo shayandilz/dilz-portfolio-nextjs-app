@@ -136,7 +136,7 @@ export async function getStaticProps({ params }) {
             headerFooter: data ?? {},
             post,
         },
-        revalidate: 1,
+        revalidate: 2,
     };
 }
 
