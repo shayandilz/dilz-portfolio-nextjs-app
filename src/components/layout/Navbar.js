@@ -91,7 +91,8 @@ const Navbar = ({header, social}) => {
                             {renderSocialIcon(socialItems.title)}
                         </Link>
                     )) : null}
-                    <button onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
+                    <button aria-label={'theme-switcher'}
+                            onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
                             className={`ml-3 flex items-center justify-center rounded-full p-1 ${mode === "light" ? 'bg-dark text-light' : 'bg-light text-dark'}`}
                     >
                         {
@@ -116,7 +117,7 @@ const Navbar = ({header, social}) => {
                         </nav>
                         <nav className={'flex justify-center items-center gap-3 flex-wrap mt-16'}>
                             {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
-                                <Link key={index} className={'w-9'} href={socialItems.url} target={'_blank'}>
+                                <Link key={index} aria-label={socialItems.title} className={'w-9'} href={socialItems.url} target={'_blank'}>
                                     {renderSocialIcon(socialItems.title)}
                                 </Link>
                             )) : null}
