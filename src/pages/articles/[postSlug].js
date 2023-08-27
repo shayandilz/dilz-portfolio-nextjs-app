@@ -68,8 +68,8 @@ const Post = ({favicon, headerFooter, post }) => {
                                         className={'rounded-lg'}
                                     />
                                     <h3 className="text-lg font-semibold">{relatedPost.title}</h3>
-                                    <p className="text-sm text-gray-600">{relatedPost.excerpt}</p>
-                                    <a href={`/posts/${relatedPost.slug}`} className="text-primary hover:underline">
+                                    <p className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: relatedPost.excerpt }} />
+                                    <a href={`/articles/${relatedPost.slug}`} className="text-primary hover:underline">
                                         Read more
                                     </a>
                                 </div>
@@ -94,7 +94,7 @@ async function fetchRelatedPosts(category, currentPostSlug) {
 // Helper function to extract headings
 function extractHeadings(content) {
     const headings = [];
-    const headingMatches = content.match(/<h[1-6][^>]*>(.*?)<\/h[1-6]>/gi);
+    const headingMatches = content.match(/<h[1-6][^>]*>(.*?)<\/h[1-3]>/gi);
 
     if (headingMatches) {
         headingMatches.forEach((match, index) => {

@@ -50,7 +50,7 @@ const Article = ({img, title, date, link, id, width, height}) => {
     return (
         <motion.li
             key={id}
-            initial={{y: 100}}
+            initial={{y: 10}}
             whileInView={{y: 0, transition: {duration: 0.5, ease: 'easeInOut'}}}
             viewport={{once: true}}
             className={'relative w-full p-4 py-6 my-4 rounded-xl flex items-center justify-between bg-light dark:bg-dark text-dark dark:text-light first:mt-0 border border-solid border-dark dark:border-light border-r-4 border-b-4 sm:flex-col'}>
@@ -84,7 +84,8 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height}) =
                 <h2 className="capitalize text-2xl font-bold my-2 mt-4 xs:text-lg">
                     {title}
                 </h2>
-                <p className={'text-sm mb-2 text-justify'}>{summary}</p>
+                <p className={'text-sm mb-2 text-justify'} dangerouslySetInnerHTML={{ __html: summary }} />
+
                 <span className={'text-primary font-semibold'}>{time}</span>
             </Link>
         </li>
@@ -104,7 +105,7 @@ const Articles = ({favicon, headerFooter, posts, meta}) => {
             metaData={meta}
         >
             <TransitionEffect/>
-            <div className={' w-full mb-16 flex flex-col items-center justify-center overflow-hidden'}>
+            <div className={'w-full mb-16 flex flex-col items-center justify-center min-h-screen'}>
                 <section className={'pt-16'}>
                     <AnimatedText text={'Articles'} className={'mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl'}/>
                     <ul className={'grid grid-cols-2 gap-16 lg-gap-8 md:grid-cols-1 md:gap-y-16'}>
@@ -121,7 +122,7 @@ const Articles = ({favicon, headerFooter, posts, meta}) => {
                             />
                         ))}
                     </ul>
-                    <h2 className={'font-bold text-4xl w-full my-16 text-center dark:text-light min-h-screen'}>All Articles</h2>
+                    <h2 className={'font-bold text-4xl w-full my-16 text-center dark:text-light'}>All Articles</h2>
                     <ul>
                         {regularPosts.map((post) => (
                             <Article
