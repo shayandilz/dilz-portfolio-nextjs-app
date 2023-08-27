@@ -12,6 +12,9 @@ body * {
 .prose a {
     @apply dark:text-primaryDark text-primary;
 }
+.prose code{
+    @apply dark:text-primaryDark;
+}
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
