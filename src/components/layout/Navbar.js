@@ -110,7 +110,7 @@ const Navbar = ({header, social}) => {
                         <CustomLinkMobile key={menuItems?.ID} href={menuItems.url} title={menuItems.title}
                                           icon={menuItems.icon} active={menuItems.icon_active} toggle={handleClick}/>
                     )) : null}
-                    <button className={`bg-white flex justify-center items-center text-dark w-[4rem]`} onClick={handleClick}>
+                    <button className={`bg-white flex justify-center items-center text-dark w-[4rem] z-30`} onClick={handleClick}>
                         <svg xmlns="http://www.w3.org/2000/svg"
                              width="35"
                              height="35" fill="currentColor"
@@ -132,7 +132,7 @@ const Navbar = ({header, social}) => {
                                 exit={{opacity: 0, y: '100%'}}
                                 transition={{duration: 0.5}}
 
-                                className={'w-screen absolute flex justify-between flex-col items-center z-30 bg-dark/90 dark:bg-dark/90 backdrop-blur-sm h-100 border-t border-light'}>
+                                className={'w-screen absolute flex justify-between flex-col items-center bg-dark/90 dark:bg-dark/90 backdrop-blur-sm h-100 border-t border-light'}>
 
                                 <nav className={'flex justify-center items-center gap-3 flex-wrap py-3'}>
                                     {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
