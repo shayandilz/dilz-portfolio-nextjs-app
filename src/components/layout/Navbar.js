@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import Link from "next/link";
 import Logo from "../Logo";
-import {motion} from "framer-motion";
+import {motion, AnimatePresence} from "framer-motion";
 import {useRouter} from "next/router";
-import { isEmpty } from 'lodash';
+import {isEmpty} from 'lodash';
 import {
     DribbbleIcon,
     GithubIcon,
@@ -35,8 +35,10 @@ const CustomLinkMobile = ({href, title, className = "", toggle, icon, active}) =
         router.push(href);
     }
     return (
-        <button href={href} className={`${className} relative group text-light dark:text-light my-4 text-2xl`} onClick={handleClick}>
-            <div className={'transition duration-75 fill-light'} dangerouslySetInnerHTML={{ __html: router.asPath === href ? active : icon }} />
+        <button href={href} className={`${className} relative group text-light dark:text-light my-4 text-2xl`}
+                onClick={handleClick}>
+            <div className={'transition duration-75 fill-light'}
+                 dangerouslySetInnerHTML={{__html: router.asPath === href ? active : icon}}/>
         </button>
     )
 }
@@ -50,21 +52,22 @@ const Navbar = ({header, social}) => {
     const renderSocialIcon = (iconName) => {
         // Implement your logic for different icons here
         if (iconName === 'GithubIcon') {
-            return <GithubIcon />;
-        }else if(iconName === 'DribbbleIcon'){
-            return <DribbbleIcon />
-        }else if (iconName === 'LinkedInIcon'){
-            return <LinkedInIcon />
-        }else if (iconName === 'TwitterIcon'){
-            return <TwitterIcon />
-        }else if (iconName === 'PinterestIcon'){
-            return <PinterestIcon />
+            return <GithubIcon/>;
+        } else if (iconName === 'DribbbleIcon') {
+            return <DribbbleIcon/>
+        } else if (iconName === 'LinkedInIcon') {
+            return <LinkedInIcon/>
+        } else if (iconName === 'TwitterIcon') {
+            return <TwitterIcon/>
+        } else if (iconName === 'PinterestIcon') {
+            return <PinterestIcon/>
         }
         // Add more conditions for other icons if needed
         return null; // Fallback to null if no matching icon is found
     };
     return (
-        <header className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative lg:px-12 md:px-12 sm:px-8'>
+        <header
+            className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative lg:px-12 md:px-12 sm:px-8'>
             {/*<button aria-label={'menu-hamburger'} className={'flex-col justify-center items-center hidden lg:flex'} onClick={handleClick}>*/}
             {/*    <span*/}
             {/*        className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>*/}
@@ -76,12 +79,13 @@ const Navbar = ({header, social}) => {
             <div className={'w-full flex justify-between items-center lg:hidden'}>
                 <nav className={'flex gap-4'}>
                     {!isEmpty(header) && header.length ? header.map(menuItems => (
-                        <CustomLink key={ menuItems?.ID } href={menuItems.url} title={menuItems.title}/>
+                        <CustomLink key={menuItems?.ID} href={menuItems.url} title={menuItems.title}/>
                     )) : null}
                 </nav>
                 <nav className={'flex justify-center items-center gap-3 flex-wrap'}>
                     {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
-                        <Link aria-label={socialItems.title} key={index} className={'w-9'} href={socialItems.url} target={'_blank'}>
+                        <Link aria-label={socialItems.title} key={index} className={'w-9'} href={socialItems.url}
+                              target={'_blank'}>
                             {renderSocialIcon(socialItems.title)}
                         </Link>
                     )) : null}
@@ -99,13 +103,54 @@ const Navbar = ({header, social}) => {
             </div>
 
 
-            <nav className={'fixed h-max bottom-0 mt-auto z-50 hidden lg:flex w-full left-0 right-0 justify-center bg-dark dark:bg-[#2d444f] rounded-t-2xl'} >
-                <div className={'flex w-full gap-10 justify-around'}>
+            <nav
+                className={'fixed h-max bottom-0 mt-auto z-50 hidden lg:inline-block w-full left-0 right-0 justify-center bg-dark dark:bg-[#2d444f] rounded-t-2xl overflow-hidden'}>
+                <div className={'flex w-full gap-10 justify-between ps-10'}>
                     {!isEmpty(header) && header.length ? header.map(menuItems => (
-                        <CustomLinkMobile key={ menuItems?.ID } href={menuItems.url} title={menuItems.title} icon={menuItems.icon} active={menuItems.icon_active} toggle={handleClick}/>
+                        <CustomLinkMobile key={menuItems?.ID} href={menuItems.url} title={menuItems.title}
+                                          icon={menuItems.icon} active={menuItems.icon_active} toggle={handleClick}/>
                     )) : null}
+                    <button className={`bg-white px-5 text-dark `} onClick={handleClick}>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="35"
+                             height="35" fill="currentColor"
+                             className={`bi bi-arrow-up-short transition-all duration-500 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+                             viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                        </svg>
+                    </button>
+
                 </div>
+                <AnimatePresence>
+                    {
+                        isOpen && (
+
+                            <motion.div
+                                initial={{opacity: 0, x: '-15%', y: '100%'}}
+                                animate={{opacity: 1, x: '-15%', y: '-100%'}}
+                                exit={{opacity: 0, y: '100%'}}
+                                transition={{duration: 0.5}}
+
+                                className={'w-screen absolute flex justify-between flex-col items-center z-30 bg-dark/90 dark:bg-dark/90 backdrop-blur-sm h-100 border-t border-light'}>
+
+                                <nav className={'flex justify-center items-center gap-3 flex-wrap py-3'}>
+                                    {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
+                                        <Link key={index} aria-label={socialItems.title} className={'w-9'}
+                                              href={socialItems.url} target={'_blank'}>
+                                            {renderSocialIcon(socialItems.title)}
+                                        </Link>
+                                    )) : null}
+
+                                </nav>
+                            </motion.div>
+
+                        )
+                    }
+                </AnimatePresence>
             </nav>
+
+
             <button onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
                     className={`w-9 hidden lg:flex items-center justify-center rounded-full p-1 ${mode === "light" ? 'bg-dark text-light' : 'bg-light text-dark'}`}
             >
@@ -115,25 +160,6 @@ const Navbar = ({header, social}) => {
                         <MoonIcon className={'fill-dark'}/>
                 }
             </button>
-            {
-                isOpen ?
-                    <motion.div
-                        initial={{scale: 0, opacity: 0, x: '-50%', y: '-50%'}}
-                        animate={{scale: 1, opacity: 1}}
-                        className={'min-w-[100vw] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-between flex-col items-center z-30 bg-dark/90 dark:bg-light/75 rounded-lg backdrop-blur-md py-32'}>
-
-                        <nav className={'flex justify-center items-center gap-3 flex-wrap mt-16'}>
-                            {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
-                                <Link key={index} aria-label={socialItems.title} className={'w-9'} href={socialItems.url} target={'_blank'}>
-                                    {renderSocialIcon(socialItems.title)}
-                                </Link>
-                            )) : null}
-
-                        </nav>
-                    </motion.div>
-
-                    : null
-            }
 
             <div className={'absolute left-[50%] top-2 translate-x-[-50%]'}>
                 <Logo/>

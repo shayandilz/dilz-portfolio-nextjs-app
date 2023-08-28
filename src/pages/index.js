@@ -38,7 +38,7 @@ export default function Home({favicon, headerFooter, homepage, meta}) {
                             <div className={'lg:w-full flex items-center justify-start lg:justify-center'}>
                                 <Link
                                     target={'_blank'}
-                                    className={'bg-dark dark:bg-light dark:text-dark text-light px-6 py-2 flex items-center justify-center text-lg font-semibold dark:hover:bg-dark hover:bg-white transition duration-300 dark:hover:text-light hover:text-dark border border-solid border-transparent hover:border-dark dark:hover:border-light md:p-2 md:px-4 md:text-base'}
+                                    className={'bg-dark dark:bg-light dark:text-dark text-light px-6 py-2 flex items-center justify-center text-lg font-semibold dark:hover:bg-dark hover:bg-white transition duration-300 dark:hover:text-light hover:text-dark border border-solid border-transparent hover:border-dark dark:hover:border-light md:p-2 md:px-4 md:text-base rounded-lg'}
                                     href={homepage.main.resume}>Resume {<LinkArrow
                                     className={'w-16 ml-2'}/>}</Link>
                             </div>
