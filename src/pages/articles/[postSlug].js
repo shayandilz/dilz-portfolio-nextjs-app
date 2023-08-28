@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Layout from '@/src/components/layout';
-import { fetchCommonData } from '@/src/utils/fetchData';
+import {fetchCommonData, fetchPostData} from '@/src/utils/fetchData';
 import TransitionEffect from "@/src/components/TransitionEffect";
 
 
@@ -86,8 +86,8 @@ const Post = ({favicon, headerFooter, post }) => {
 };
 // Helper function to fetch related posts based on category
 async function fetchRelatedPosts(category, currentPostSlug) {
-    const data = await fetchCommonData();
-    const relatedPosts = data.posts.filter((post) => post.categories[0]['term_id'] === category && post.slug !== currentPostSlug);
+    const initialPosts = await fetchPostData();
+    const relatedPosts = initialPosts.posts.filter((post) => post.categories[0]['term_id'] === category && post.slug !== currentPostSlug);
     return relatedPosts.slice(0, 2); // You can adjust the number of related posts to display
 }
 
@@ -115,8 +115,8 @@ function addHeadingIds(content) {
     });
 }
 export async function getStaticPaths() {
-    const data = await fetchCommonData();
-    const paths = data.posts.map((post) => ({
+    const initialPosts = await fetchPostData();
+    const paths = initialPosts.posts.map((post) => ({
         params: { postSlug: post.slug },
     }));
 
@@ -128,7 +128,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const data = await fetchCommonData();
-    const post = data.posts.find((post) => post.slug === params.postSlug);
+    const initialPosts = await fetchPostData();
+    const post = initialPosts.posts.find((post) => post.slug === params.postSlug);
 
     return {
         props: {
