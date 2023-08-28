@@ -31,8 +31,8 @@ export default function Home({favicon, headerFooter, homepage, meta}) {
                         </div>
                         <div className={'w-1/2 flex flex-col items-start self-center lg:w-full lg:text-center'}>
                             <AnimatedText text={homepage.main.title}
-                                          className='!text-6xl !text-left xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl lg:py-10'/>
-                            <p className={'text-base text-medium my-4 dark:text-light md:text-sm sm:text-xs lg:pb-10'}>
+                                          className='!text-6xl !text-left xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl lg:py-5'/>
+                            <p className={'text-base text-medium my-4 dark:text-light md:text-sm sm:text-sm lg:pb-5 text-justify text-black font-medium'}>
                                 {homepage.main.text}
                             </p>
                             <div className={'lg:w-full flex items-center justify-start lg:justify-center'}>

@@ -99,7 +99,7 @@ const Navbar = ({header, social}) => {
             </div>
 
 
-            <nav className={'fixed h-max bottom-0 mt-auto z-50 hidden lg:flex w-full left-0 right-0 justify-center dark:bg-[#2d444f]'} >
+            <nav className={'fixed h-max bottom-0 mt-auto z-50 hidden lg:flex w-full left-0 right-0 justify-center bg-dark dark:bg-[#2d444f] rounded-t-2xl'} >
                 <div className={'flex w-full gap-10 justify-around'}>
                     {!isEmpty(header) && header.length ? header.map(menuItems => (
                         <CustomLinkMobile key={ menuItems?.ID } href={menuItems.url} title={menuItems.title} icon={menuItems.icon} active={menuItems.icon_active} toggle={handleClick}/>
@@ -107,7 +107,7 @@ const Navbar = ({header, social}) => {
                 </div>
             </nav>
             <button onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
-                    className={` w-9 flex items-center justify-center rounded-full p-1 ${mode === "light" ? 'bg-dark text-light' : 'bg-light text-dark'}`}
+                    className={`w-9 hidden lg:flex items-center justify-center rounded-full p-1 ${mode === "light" ? 'bg-dark text-light' : 'bg-light text-dark'}`}
             >
                 {
                     mode === 'dark' ?
