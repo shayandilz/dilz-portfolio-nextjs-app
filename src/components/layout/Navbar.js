@@ -29,19 +29,14 @@ const CustomLink = ({href, title, className = ""}) => {
     )
 }
 
-const CustomLinkMobile = ({href, title, className = "", toggle, icon}) => {
+const CustomLinkMobile = ({href, title, className = "", toggle, icon, active}) => {
     const router = useRouter();
     const handleClick = () => {
         router.push(href);
     }
     return (
         <button href={href} className={`${className} relative group text-light dark:text-light my-4 text-2xl`} onClick={handleClick}>
-            <div className={'fill-primaryDark'} dangerouslySetInnerHTML={{ __html: icon }} />
-            <span
-                className={`h-[1px] inline-block bg-light dark:bg-dark absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${router.asPath === href ? 'w-full' : 'w-0'} dark:bg-light`}
-
-            >&nbsp;
-            </span>
+            <div className={'transition duration-75 fill-light'} dangerouslySetInnerHTML={{ __html: router.asPath === href ? active : icon }} />
         </button>
     )
 }
@@ -107,7 +102,7 @@ const Navbar = ({header, social}) => {
             <nav className={'fixed h-max bottom-0 mt-auto z-50 hidden lg:flex w-full left-0 right-0 justify-center dark:bg-[#2d444f]'} >
                 <div className={'flex w-full gap-10 justify-around'}>
                     {!isEmpty(header) && header.length ? header.map(menuItems => (
-                        <CustomLinkMobile key={ menuItems?.ID } href={menuItems.url} title={menuItems.title} icon={menuItems.icon} toggle={handleClick}/>
+                        <CustomLinkMobile key={ menuItems?.ID } href={menuItems.url} title={menuItems.title} icon={menuItems.icon} active={menuItems.icon_active} toggle={handleClick}/>
                     )) : null}
                 </div>
             </nav>
