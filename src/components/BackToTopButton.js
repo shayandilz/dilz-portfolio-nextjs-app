@@ -31,7 +31,7 @@ const BackToTopButton = () => {
             aria-hidden="true"
             className={`${
                 isVisible
-                    ? 'fixed bottom-4 right-4 opacity-100'
+                    ? 'fixed bottom-4 lg:bottom-20 right-4 opacity-100'
                     : 'opacity-0 invisible'
             } transition-opacity duration-300 ease-in-out bg-dark dark:bg-light dark:text-dark text-white p-4 rounded-full shadow-md`}
             onClick={scrollToTop}

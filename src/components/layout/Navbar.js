@@ -64,15 +64,15 @@ const Navbar = ({header, social}) => {
         return null; // Fallback to null if no matching icon is found
     };
     return (
-        <header className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative z-20 lg:px-16 md:px-12 sm:px-8'>
-            <button aria-label={'menu-hamburger'} className={'flex-col justify-center items-center hidden lg:flex'} onClick={handleClick}>
-                <span
-                    className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
-                <span
-                    className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm my-0.5 transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                <span
-                    className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
-            </button>
+        <header className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative lg:px-12 md:px-12 sm:px-8'>
+            {/*<button aria-label={'menu-hamburger'} className={'flex-col justify-center items-center hidden lg:flex'} onClick={handleClick}>*/}
+            {/*    <span*/}
+            {/*        className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>*/}
+            {/*    <span*/}
+            {/*        className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm my-0.5 transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>*/}
+            {/*    <span*/}
+            {/*        className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>*/}
+            {/*</button>*/}
             <div className={'w-full flex justify-between items-center lg:hidden'}>
                 <nav className={'flex gap-4'}>
                     {!isEmpty(header) && header.length ? header.map(menuItems => (
@@ -106,6 +106,15 @@ const Navbar = ({header, social}) => {
                     )) : null}
                 </div>
             </nav>
+            <button onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
+                    className={` w-9 flex items-center justify-center rounded-full p-1 ${mode === "light" ? 'bg-dark text-light' : 'bg-light text-dark'}`}
+            >
+                {
+                    mode === 'dark' ?
+                        <SunIcon className={'fill-dark'}/> :
+                        <MoonIcon className={'fill-dark'}/>
+                }
+            </button>
             {
                 isOpen ?
                     <motion.div
@@ -119,15 +128,7 @@ const Navbar = ({header, social}) => {
                                     {renderSocialIcon(socialItems.title)}
                                 </Link>
                             )) : null}
-                            <button onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
-                                    className={`ml-3 w-9 flex items-center justify-center rounded-full p-1 ${mode === "light" ? 'bg-dark text-light' : 'bg-light text-dark'}`}
-                            >
-                                {
-                                    mode === 'dark' ?
-                                        <SunIcon className={'fill-dark'}/> :
-                                        <MoonIcon className={'fill-dark'}/>
-                                }
-                            </button>
+
                         </nav>
                     </motion.div>
 
