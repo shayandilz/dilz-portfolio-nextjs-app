@@ -75,7 +75,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                 <meta property="og:updated_time" content={og_update}/>
                 <meta property="article:published_time" content={og_publish}/>
                 <meta property="article:modified_time" content={og_modify}/>
-                <meta name="robots" content={meta_robots.index + ', ' + meta_robots.follow}/>
+                <meta name="robots" content={meta_robots.index ?? {} + ', ' + meta_robots.follow ?? {}}/>
                 <script type="application/ld+json"
                         className={'yoast-schema-graph'}
                         key={'yoastSchema'}
