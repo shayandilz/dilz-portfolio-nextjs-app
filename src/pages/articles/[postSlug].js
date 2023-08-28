@@ -56,9 +56,9 @@ const Post = ({favicon, headerFooter, post }) => {
                 {relatedPosts.length > 0 && (
                     <div className="mt-8 max-w-4xl pt-8 border-t-2 border-dark">
                         <h5 className={'text-center pb-8 text-2xl font-bold dark:text-light'}>Related Posts</h5>
-                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            <div className="grid grid-cols-2 gap-4 lg:grid-cols-1">
                             {relatedPosts.map((relatedPost) => (
-                                <div key={relatedPost.slug} className="bg-white p-4 rounded-lg shadow">
+                                <div key={relatedPost.slug} className="flex flex-col justify-between bg-light dark:bg-dark border border-solid border-dark dark:border-light dark:text-light rounded-2xl p-3">
                                     <Image
                                         src={relatedPost.media.thumbnail}
                                         alt={relatedPost.title}
@@ -67,9 +67,9 @@ const Post = ({favicon, headerFooter, post }) => {
                                         objectFit="cover"
                                         className={'rounded-lg'}
                                     />
-                                    <h3 className="text-lg font-semibold">{relatedPost.title}</h3>
-                                    <p className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: relatedPost.excerpt }} />
-                                    <a href={`/articles/${relatedPost.slug}`} className="text-primary hover:underline">
+                                    <h3 className="text-lg font-semibold py-2">{relatedPost.title}</h3>
+                                    <p className="text-sm dark:text-light text-gray-600" dangerouslySetInnerHTML={{ __html: relatedPost.excerpt }} />
+                                    <a href={`/articles/${relatedPost.slug}`} className="dark:text-primaryDark text-primary hover:underline">
                                         Read more
                                     </a>
                                 </div>
