@@ -29,15 +29,14 @@ const CustomLink = ({href, title, className = ""}) => {
     )
 }
 
-const CustomLinkMobile = ({href, title, className = "", toggle}) => {
+const CustomLinkMobile = ({href, title, className = "", toggle, icon}) => {
     const router = useRouter();
     const handleClick = () => {
-        toggle();
         router.push(href);
     }
     return (
-        <button href={href} className={`${className} relative group text-light dark:text-dark my-2 text-2xl`} onClick={handleClick}>
-            {title}
+        <button href={href} className={`${className} relative group text-light dark:text-light my-4 text-2xl`} onClick={handleClick}>
+            <div className={'fill-primaryDark'} dangerouslySetInnerHTML={{ __html: icon }} />
             <span
                 className={`h-[1px] inline-block bg-light dark:bg-dark absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${router.asPath === href ? 'w-full' : 'w-0'} dark:bg-light`}
 
@@ -104,17 +103,21 @@ const Navbar = ({header, social}) => {
                 </nav>
             </div>
 
+
+            <nav className={'fixed h-max bottom-0 mt-auto z-50 hidden lg:flex w-full left-0 right-0 justify-center dark:bg-[#2d444f]'} >
+                <div className={'flex w-full gap-10 justify-around'}>
+                    {!isEmpty(header) && header.length ? header.map(menuItems => (
+                        <CustomLinkMobile key={ menuItems?.ID } href={menuItems.url} title={menuItems.title} icon={menuItems.icon} toggle={handleClick}/>
+                    )) : null}
+                </div>
+            </nav>
             {
                 isOpen ?
                     <motion.div
                         initial={{scale: 0, opacity: 0, x: '-50%', y: '-50%'}}
                         animate={{scale: 1, opacity: 1}}
                         className={'min-w-[100vw] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-between flex-col items-center z-30 bg-dark/90 dark:bg-light/75 rounded-lg backdrop-blur-md py-32'}>
-                        <nav className={'flex items-center flex-col justify-center'} >
-                            {!isEmpty(header) && header.length ? header.map(menuItems => (
-                                <CustomLinkMobile key={ menuItems?.ID } href={menuItems.url} title={menuItems.title} toggle={handleClick}/>
-                            )) : null}
-                        </nav>
+
                         <nav className={'flex justify-center items-center gap-3 flex-wrap mt-16'}>
                             {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
                                 <Link key={index} aria-label={socialItems.title} className={'w-9'} href={socialItems.url} target={'_blank'}>

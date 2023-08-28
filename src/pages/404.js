@@ -12,7 +12,7 @@ function Error404({favicon, headerFooter, meta}) {
                     siteTitle={'404'}
                     metaData={meta}>
             <div className="h-screen w-full flex flex-col justify-center items-center">
-                <h1 className="text-[15rem] font-extrabold dark:text-light text-dark tracking-widest">404</h1>
+                <h1 className="text-[15rem] lg:text-9xl font-extrabold dark:text-light text-dark tracking-widest">404</h1>
                 <div className="dark:bg-primaryDark bg-primary px-2 text-2xl rounded rotate-12 absolute">
                     Page Not Found
                 </div>
