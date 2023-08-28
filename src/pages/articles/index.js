@@ -1,11 +1,14 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import AnimatedText from "../../components/AnimatedText";
 import Link from "next/link";
 import Image from "next/image";
 import {motion, useMotionValue} from "framer-motion";
 import TransitionEffect from "../../components/TransitionEffect";
 import Layout from "@/src/components/layout";
-import {fetchCommonData} from "@/src/utils/fetchData";
+import {fetchCommonData, fetchPostData} from "@/src/utils/fetchData";
+import LoadMore from "@/src/components/loadMore";
+import {isBoolean} from "lodash";
+
 
 const FramerImage = motion(Image);
 
@@ -92,11 +95,29 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height}) =
     )
 }
 
-const Articles = ({favicon, headerFooter, posts, meta}) => {
+const Articles = ({favicon, headerFooter, allPosts, meta}) => {
     // Offset value to exclude the first two posts from featured articles
+    const [hasNextPage, setNextPage] = useState(allPosts.pagination['hasNextPage'])
+    const [isLoading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [loadedPosts, setLoadedPosts] = useState(allPosts.posts);
+
+    const loadMorePosts = async () => {
+        setLoading(true); // Set loading state to true before fetching
+        const nextPage = page + 1;
+        const newPosts = await fetchPostData(nextPage);
+        setNextPage(newPosts.pagination['hasNextPage'])
+
+        setPage(nextPage);
+        setLoadedPosts([...loadedPosts, ...newPosts.posts]);
+
+        setLoading(false); // Set loading state back to false after fetching
+    };
+
     const offset = 2;
-    const featuredPosts = posts.slice(0, offset);
-    const regularPosts = posts.slice(offset);
+    const featuredPosts = loadedPosts.slice(0, 2);
+    const regularPosts = loadedPosts.slice(2);
+
     return (
         <Layout
             favicon={favicon.global.icon}
@@ -136,6 +157,7 @@ const Articles = ({favicon, headerFooter, posts, meta}) => {
                             />
                         ))}
                     </ul>
+                    {hasNextPage && <LoadMore onClick={loadMorePosts} isLoading={isLoading} />}
                 </section>
             </div>
         </Layout>
@@ -145,13 +167,13 @@ export default Articles;
 
 export async function getStaticProps() {
     const data = await fetchCommonData();
-
+    const initialPosts = await fetchPostData();
     return {
         props: {
             meta: data?.pages?.articles?.yoast_meta ?? {},
             favicon: data ?? {},
             headerFooter: data ?? {},
-            posts: data.posts
+            allPosts: initialPosts,
         },
         revalidate: 1,
     }
