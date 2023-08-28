@@ -13,7 +13,7 @@ export async function fetchCommonData() {
     }
 }
 
-export async function fetchPostData(page = 1, perPage = 2, hasNextPage = false) {
+export async function fetchPostData(page = 1, perPage = 2) {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/custom-blog/v1/posts?page=${page}&per_page=${perPage}`);
         const data = await response.json();

@@ -115,7 +115,9 @@ function addHeadingIds(content) {
     });
 }
 export async function getStaticPaths() {
-    const initialPosts = await fetchPostData();
+    const page = 1;
+    const perPage = -1;
+    const initialPosts = await fetchPostData(page, perPage);
     const paths = initialPosts.posts.map((post) => ({
         params: { postSlug: post.slug },
     }));
@@ -128,7 +130,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const data = await fetchCommonData();
-    const initialPosts = await fetchPostData();
+    const page = 1;
+    const perPage = -1;
+    const initialPosts = await fetchPostData(page, perPage);
     const post = initialPosts.posts.find((post) => post.slug === params.postSlug);
 
     return {
