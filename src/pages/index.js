@@ -18,7 +18,7 @@ export default function Home({favicon, headerFooter, homepage, meta}) {
                 metaData={meta}
         >
             <TransitionEffect/>
-            <div className={'flex items-center text-dark w-full lg:min-h-full min-h-screen'}>
+            <div className={'flex items-start text-dark w-full lg:min-h-full min-h-screen'}>
                 <section className=''>
                     <div className="flex items-center justify-center w-full lg:flex-col">
                         <div className={'w-1/2 md:w-full'}>
