@@ -61,7 +61,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                 <link rel="canonical" href={canonical}/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <meta charSet="UTF-8"/>
-                <link rel="icon" href={favicon.url ?? 'favicon.ico'} type="image/x-icon"/>
+                <link href={favicon.url} rel="shortcut icon" type="image/png" />
                 <meta property="og:title" content={og_title}/>
                 <meta property="og:description" content={og_desc}/>
                 <meta property="og:image:width" content={width}/>

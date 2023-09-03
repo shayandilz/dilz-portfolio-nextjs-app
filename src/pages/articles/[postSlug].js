@@ -3,9 +3,12 @@ import Image from 'next/image';
 import Layout from '@/src/components/layout';
 import {fetchCommonData, fetchPostData} from '@/src/utils/fetchData';
 import TransitionEffect from "@/src/components/TransitionEffect";
+import Link from "next/link";
+import {useRouter} from "next/router";
 
 
 const Post = ({favicon, headerFooter, post }) => {
+    const router = useRouter();
     // Extract headings from post content
     const headings = extractHeadings(post.content);
     // Add IDs to headings
@@ -16,6 +19,9 @@ const Post = ({favicon, headerFooter, post }) => {
             setRelatedPosts(posts);
         });
     }, [post.categories[0]['term_id'], post.slug]);
+    if ( router.isFallback ) {
+        return <div>Loading...</div>;
+    }
     return (
         <Layout
             favicon={favicon.global.icon}
@@ -69,18 +75,15 @@ const Post = ({favicon, headerFooter, post }) => {
                                     />
                                     <h3 className="text-lg font-semibold py-2">{relatedPost.title}</h3>
                                     <p className="text-sm dark:text-light text-gray-600" dangerouslySetInnerHTML={{ __html: relatedPost.excerpt }} />
-                                    <a href={`/articles/${relatedPost.slug}`} className="dark:text-primaryDark text-primary hover:underline">
+                                    <Link href={`/articles/${relatedPost.slug}`} className="dark:text-primaryDark text-primary hover:underline">
                                         Read more
-                                    </a>
+                                    </Link>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
             </div>
-
-
-
         </Layout>
     );
 };
@@ -114,19 +117,6 @@ function addHeadingIds(content) {
         return match.replace(/<h([1-6])([^>]*)>/i, `<h$1$2 id="heading-${index}" class="anchor dark:text-light text-dark mb-[5px]">`);
     });
 }
-export async function getStaticPaths() {
-    const page = 1;
-    const perPage = -1;
-    const initialPosts = await fetchPostData(page, perPage);
-    const paths = initialPosts.posts.map((post) => ({
-        params: { postSlug: post.slug },
-    }));
-
-    return {
-        paths,
-        fallback: 'blocking'
-    };
-}
 
 export async function getStaticProps({ params }) {
     const data = await fetchCommonData();
@@ -144,5 +134,20 @@ export async function getStaticProps({ params }) {
         revalidate: 10,
     };
 }
+export async function getStaticPaths() {
+    const page = 1;
+    const perPage = -1;
+    const initialPosts = await fetchPostData(page, perPage);
+    const paths = initialPosts.posts.map((post) => ({
+        params: { postSlug: post.slug },
+    }));
+
+    return {
+        paths,
+        fallback: 'blocking'
+    };
+}
+
+
 
 export default Post;

@@ -1,0 +1,22 @@
+# This is a comment explaining the purpose of the file.
+# Robots.txt is used to give instructions to web crawlers.
+
+# Allow all web crawlers to access all parts of your site by default.
+User-agent: *
+Disallow:
+
+# Block specific directories or pages that should not be indexed.
+Disallow: /private/
+Disallow: /admin/
+
+# Allow access to certain directories or pages that should be indexed.
+# This can be useful when blocking entire directories but allowing specific content within them.
+Allow: /public/
+
+# Specify the location of your XML sitemap.
+Sitemap: https://codecraftconnect.com/sitemap.xml
+
+
+# You can include more user-agent specific rules as needed.
+
+# End of the robots.txt file.

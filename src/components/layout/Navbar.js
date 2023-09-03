@@ -127,14 +127,17 @@ const Navbar = ({header, social}) => {
                         isOpen && (
 
                             <motion.div
-                                initial={{opacity: 0, x: '-15%', y: '100%'}}
-                                animate={{opacity: 1, x: '-15%', y: '-100%'}}
+                                initial={{opacity: 0, x: '0%', y: '100%'}}
+                                animate={{opacity: 1, x: '0%', y: '-100%'}}
                                 exit={{opacity: 0, y: '100%'}}
                                 transition={{duration: 0.5}}
 
-                                className={'w-screen absolute flex justify-between flex-col items-center bg-dark/90 dark:bg-dark/90 backdrop-blur-sm h-100 border-t border-light'}>
+                                className={'w-screen absolute flex justify-center flex-col items-start bg-dark/90 dark:bg-dark/90 backdrop-blur-sm h-100 border-t border-light rounded-tl-2xl px-5'}>
 
                                 <nav className={'flex justify-center items-center gap-3 flex-wrap py-3'}>
+                                    <span className={'text-lg uppercase text-white'}>
+                                        contact us :
+                                    </span>
                                     {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
                                         <Link key={index} aria-label={socialItems.title} className={'w-9'}
                                               href={socialItems.url} target={'_blank'}>
