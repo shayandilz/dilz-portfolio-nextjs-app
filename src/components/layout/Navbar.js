@@ -102,7 +102,7 @@ const Navbar = ({header, social}) => {
                         <CustomLinkMobile key={menuItems?.ID} href={menuItems.url} title={menuItems.title}
                                           icon={menuItems.icon} active={menuItems.icon_active} toggle={handleClick}/>
                     )) : null}
-                    <button className={`bg-white flex justify-center items-center text-dark w-[4rem] z-30`} onClick={handleClick}>
+                    <button aria-label={'social_links'} className={`bg-white flex justify-center items-center text-dark w-[4rem] z-30`} onClick={handleClick}>
                         <svg xmlns="http://www.w3.org/2000/svg"
                              width="35"
                              height="35" fill="currentColor"
