@@ -8,6 +8,7 @@ import {
     DribbbleIcon,
     GithubIcon,
     LinkedInIcon,
+    MailIcon,
     MoonIcon,
     PinterestIcon,
     SunIcon,
@@ -59,6 +60,8 @@ const Navbar = ({header, social}) => {
             return <LinkedInIcon className={'lg:fill-light dark:fill-light'}/>
         } else if (iconName === 'TwitterIcon') {
             return <TwitterIcon/>
+        } else if (iconName === 'MailIcon') {
+            return <MailIcon className={'lg:fill-light dark:fill-light'}/>
         } else if (iconName === 'PinterestIcon') {
             return <PinterestIcon/>
         }
@@ -74,7 +77,7 @@ const Navbar = ({header, social}) => {
                         <CustomLink key={menuItems?.ID} href={menuItems.url} title={menuItems.title}/>
                     )) : null}
                 </nav>
-                <nav className={'flex justify-center items-center gap-3 flex-wrap'}>
+                <nav className={'flex justify-center items-center gap-5 flex-wrap'}>
                     {!isEmpty(social) && social.length ? social.map((socialItems, index) => (
                         <Link aria-label={socialItems.title} key={index} className={'w-9'} href={socialItems.url}
                               target={'_blank'}>
