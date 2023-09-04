@@ -19,7 +19,7 @@ import useThemeSwitcher from "../hooks/useThemeSwitcher";
 const CustomLink = ({href, title, className = ""}) => {
     const router = useRouter()
     return (
-        <Link scroll={false} href={href} className={`${className} relative group`}>
+        <Link href={href} className={`${className} relative group`}>
             {title}
             <span
                 className={`h-[1px] inline-block bg-dark absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${router.asPath === href ? 'w-full' : 'w-0'} dark:bg-light`}
@@ -34,7 +34,7 @@ const CustomLinkMobile = ({ href, title, className = '', toggle, icon, active })
     const router = useRouter();
 
     return (
-        <Link scroll={false} href={href} aria-label={title} className={`${className} relative group text-light dark:text-light my-4 text-2xl`}>
+        <Link href={href} aria-label={title} className={`${className} relative group text-light dark:text-light my-4 text-2xl`}>
             <div className={'transition duration-75 fill-light'} dangerouslySetInnerHTML={{ __html: router.asPath === href ? active : icon }} />
         </Link>
     );
