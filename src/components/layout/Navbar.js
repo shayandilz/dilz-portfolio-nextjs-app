@@ -145,7 +145,7 @@ const Navbar = ({header, social}) => {
             </nav>
 
 
-            <button onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
+            <button aria-label={'switch-theme'} onClick={() => setMode(mode === "light" ? 'dark' : 'light')}
                     className={`w-9 hidden lg:flex items-center justify-center rounded-full p-1 ${mode === "light" ? 'bg-dark text-light' : 'bg-light text-dark'}`}
             >
                 {
