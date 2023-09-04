@@ -52,11 +52,11 @@ const Navbar = ({header, social}) => {
     const renderSocialIcon = (iconName) => {
         // Implement your logic for different icons here
         if (iconName === 'GithubIcon') {
-            return <GithubIcon className={'fill-dark dark:fill-light'}/>;
+            return <GithubIcon className={'lg:fill-light dark:fill-light'}/>;
         } else if (iconName === 'DribbbleIcon') {
             return <DribbbleIcon/>
         } else if (iconName === 'LinkedInIcon') {
-            return <LinkedInIcon className={'fill-dark dark:fill-light'}/>
+            return <LinkedInIcon className={'lg:fill-light dark:fill-light'}/>
         } else if (iconName === 'TwitterIcon') {
             return <TwitterIcon/>
         } else if (iconName === 'PinterestIcon') {
