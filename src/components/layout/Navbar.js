@@ -52,11 +52,11 @@ const Navbar = ({header, social}) => {
     const renderSocialIcon = (iconName) => {
         // Implement your logic for different icons here
         if (iconName === 'GithubIcon') {
-            return <GithubIcon/>;
+            return <GithubIcon className={'fill-dark dark:fill-light'}/>;
         } else if (iconName === 'DribbbleIcon') {
             return <DribbbleIcon/>
         } else if (iconName === 'LinkedInIcon') {
-            return <LinkedInIcon/>
+            return <LinkedInIcon className={'fill-dark dark:fill-light'}/>
         } else if (iconName === 'TwitterIcon') {
             return <TwitterIcon/>
         } else if (iconName === 'PinterestIcon') {
@@ -68,14 +68,6 @@ const Navbar = ({header, social}) => {
     return (
         <header
             className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative lg:px-12 md:px-12 sm:px-8'>
-            {/*<button aria-label={'menu-hamburger'} className={'flex-col justify-center items-center hidden lg:flex'} onClick={handleClick}>*/}
-            {/*    <span*/}
-            {/*        className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>*/}
-            {/*    <span*/}
-            {/*        className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm my-0.5 transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>*/}
-            {/*    <span*/}
-            {/*        className={`bg-dark dark:bg-light block h-0.5 w-6 rounded-sm transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>*/}
-            {/*</button>*/}
             <div className={'w-full flex justify-between items-center lg:hidden'}>
                 <nav className={'flex gap-4'}>
                     {!isEmpty(header) && header.length ? header.map(menuItems => (
