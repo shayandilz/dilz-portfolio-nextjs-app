@@ -35,7 +35,7 @@ const CustomLinkMobile = ({href, title, className = "", toggle, icon, active}) =
         router.push(href);
     }
     return (
-        <button href={href} className={`${className} relative group text-light dark:text-light my-4 text-2xl`}
+        <button href={href} aria-label={title} className={`${className} relative group text-light dark:text-light my-4 text-2xl`}
                 onClick={handleClick}>
             <div className={'transition duration-75 fill-light'}
                  dangerouslySetInnerHTML={{__html: router.asPath === href ? active : icon}}/>

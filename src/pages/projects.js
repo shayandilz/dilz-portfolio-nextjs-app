@@ -8,7 +8,7 @@ import TransitionEffect from "../components/TransitionEffect";
 import {fetchCommonData} from "@/src/utils/fetchData";
 import {isEmpty} from "lodash";
 const FramerImage = motion(Image)
-const FeaturedProject = ({type, title, year, img, link, github, category, client}) => {
+const FeaturedProject = ({type, title, year, img, link, github, category, client, alt}) => {
     return (
         <article
             className={'w-full flex items-center justify-between rounded-3xl dark:text-light rounded-br-2xl border border-solid border-dark dark:border-light bg-light dark:bg-dark shadow-2xl p-8 relative lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4'}>
@@ -16,8 +16,8 @@ const FeaturedProject = ({type, title, year, img, link, github, category, client
             <Link className={'w-1/2 cursor-pointer overflow-hidden rounded-lg lg:w-full'} href={link} target={'_blank'}>
                 <FramerImage
                     src={img}
-                    title={title}
-                    alt={title}
+                    title={alt}
+                    alt={alt}
                     className={'w-full h-auto'}
                     whileHover={{scale: 1.05}}
                     transition={{duration: 0.2}}
@@ -55,7 +55,7 @@ const FeaturedProject = ({type, title, year, img, link, github, category, client
         </article>
     )
 }
-const Project = ({title, type, img, link, github,year, category, client}) => {
+const Project = ({title, type, img, link, github,year, category, client, alt}) => {
     return (
         <article
             className={'w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark dark:border-light dark:text-light bg-light dark:bg-dark p-6 relative xs:p-4'}>
@@ -63,8 +63,8 @@ const Project = ({title, type, img, link, github,year, category, client}) => {
             <Link className={'w-full cursor-pointer overflow-hidden rounded-lg'} href={link} target={'_blank'}>
                 <FramerImage
                     src={img}
-                    title={title}
-                    alt={title}
+                    title={alt}
+                    alt={alt}
                     className={'w-full h-auto'}
                     whileHover={{scale: 1.05}}
                     transition={{duration: 0.2}}
@@ -117,7 +117,6 @@ const Projects = ({favicon,headerFooter, portfolio, pages, meta}) => {
             <div className={'w-full mb-16 flex flex-col items-center justify-center'}>
                 <section className={'pt-16'}>
                     <AnimatedText className={'mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl'} text='Projects'/>
-
                     <div className="grid grid-cols-12 gap-16 gap-y-16 xl:gap-x-16 lg:gap-x-8 md:gap-y-24 sm:gap-x-0">
                         {!isEmpty(portfolio) && portfolio.length ? portfolio.map((items, index) => (
                             <div key={index} className={index === 0 ? "col-span-12" : "col-span-4 sm:col-span-12 xl:col-span-6"}>
@@ -127,6 +126,7 @@ const Projects = ({favicon,headerFooter, portfolio, pages, meta}) => {
                                         title={items.title}
                                         category={items.category}
                                         img={items.image}
+                                        alt={items.image.alt}
                                         type={items.type ?? 'Wordpress'}
                                         link={items.url}
                                         year={items.year ?? 'Recently'}
@@ -138,6 +138,7 @@ const Projects = ({favicon,headerFooter, portfolio, pages, meta}) => {
                                         title={items.title}
                                         category={items.category}
                                         img={items.image}
+                                        alt={items.image.alt}
                                         type={items.type ?? 'Wordpress'}
                                         link={items.url}
                                         client={items.client ?? 'Personal'}

@@ -35,7 +35,8 @@ const Post = ({favicon, headerFooter, post }) => {
                 <h1 className="text-5xl md:text-3xl font-bold mb-8 text-center text-dark dark:text-light">{post.title}</h1>
                 <Image
                     src={post.media.thumbnail}
-                    alt={post.title}
+                    alt={post.media.alt}
+                    title={post.media.alt}
                     width={800}
                     height={500}
                     objectFit="cover"
@@ -67,7 +68,8 @@ const Post = ({favicon, headerFooter, post }) => {
                                 <div key={relatedPost.slug} className="flex flex-col justify-between bg-light dark:bg-dark border border-solid border-dark dark:border-light dark:text-light rounded-2xl p-3">
                                     <Image
                                         src={relatedPost.media.thumbnail}
-                                        alt={relatedPost.title}
+                                        alt={relatedPost.media.alt}
+                                        title={relatedPost.media.alt}
                                         width={800}
                                         height={500}
                                         objectFit="cover"

@@ -63,7 +63,7 @@ const Article = ({img, title, date, link, id, width, height}) => {
         </motion.li>
     )
 }
-const FeaturedArticle = ({title, time, img, link, summary, id, width, height}) => {
+const FeaturedArticle = ({title, time, img, link, summary, id, width, height, alt}) => {
     return (
         <li key={id}
             className={'col-span-1 w-full p-4 bg-light dark:bg-dark border border-solid border-dark dark:border-light dark:text-light rounded-2xl relative'}>
@@ -73,7 +73,8 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height}) =
                   className={'w-full cursor-pointer overflow-hidden rounded-lg inline-block'}>
                 <FramerImage
                     src={img}
-                    alt={title}
+                    alt={alt}
+                    title={alt}
                     className={'w-full h-auto'}
                     whileHover={{scale: 1.05}}
                     transition={{duration: 0.2}}
@@ -136,6 +137,7 @@ const Articles = ({favicon, headerFooter, allPosts, meta}) => {
                                 title={post.title}
                                 link={`/articles/${post.slug}`}
                                 img={post.media.thumbnail}
+                                alt={post.media.alt}
                                 width={post.media.thumbnail_width}
                                 height={post.media.thumbnail_height}
                                 summary={post.excerpt}

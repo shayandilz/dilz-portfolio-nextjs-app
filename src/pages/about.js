@@ -7,6 +7,7 @@ import Experience from "../components/Experience";
 import TransitionEffect from "../components/TransitionEffect";
 import {fetchCommonData} from "@/src/utils/fetchData";
 import {isEmpty} from "lodash";
+import Services from "@/src/components/Services";
 
 const AnimatedNumbers = ({value}) => {
     const ref = useRef(null)
@@ -33,6 +34,7 @@ const AnimatedNumbers = ({value}) => {
 const About = ({favicon, headerFooter, about, meta}) => {
     const features = about.main.bio.features
     const experience = about.main.experience
+    const services = about.main.services
     return (
         <Layout
             favicon={favicon.global.icon}
@@ -48,12 +50,12 @@ const About = ({favicon, headerFooter, about, meta}) => {
                                   text='Know About Us'/>
                     <div className={'grid w-full grid-cols-8 gap-16 sm:gap-8 py-2'}>
                         <div
-                            className={'col-span-3 flex flex-col justify-start items-start xl:col-span-4 md:col-span-8'}>
+                            className={'col-span-3 flex flex-col justify-start items-start xl:col-span-10'}>
                             <h2 className={'mb-4 text-lg font-bold uppercase'}>{about.main.bio.title}</h2>
-                            <div className={'text-justify prose dark:text-light'} dangerouslySetInnerHTML={{ __html: about.main.bio.text }} />
+                            <div className={'text-justify prose dark:text-light max-w-full'} dangerouslySetInnerHTML={{ __html: about.main.bio.text }} />
                         </div>
                         <div
-                            className="col-span-2 xl:col-span-8 xl:items-center flex flex-col gap-16 justify-between items-start">
+                            className="col-span-2 xl:col-span-10 xl:items-center flex flex-col gap-16 justify-start items-start">
                             {!isEmpty(features) && features.length ? features.map((items, index) => (
                                 <div key={index} className={'flex flex-col items-start justify-center xl:items-center'}>
                                     <span className={'text-6xl font-bold md:text-6xl sm:text-4xl xs:text-3xl'}>
@@ -64,6 +66,9 @@ const About = ({favicon, headerFooter, about, meta}) => {
                                     </h2>
                                 </div>
                             )) : null}
+                        </div>
+                        <div className="col-span-3 xl:col-span-10 items-center ">
+                            <Services services={services} />
                         </div>
                     </div>
                     {/*<Skills />*/}
