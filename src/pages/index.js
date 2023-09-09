@@ -11,6 +11,7 @@ export default function Home({favicon, headerFooter, homepage, meta}) {
 
     return (
         <Layout
+                headerIcon={headerFooter.global.icon.site_logo}
                 favicon={favicon.global.icon}
                 headerFooter={headerFooter.global.menu || {}}
                 socialAccounts={headerFooter.global.social || {}}

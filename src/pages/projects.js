@@ -107,6 +107,7 @@ const Projects = ({favicon,headerFooter, portfolio, pages, meta}) => {
     let projects = '';
     return (
         <Layout
+            headerIcon={headerFooter.global.icon.site_logo}
             favicon={favicon.global.icon}
             headerFooter={headerFooter.global.menu || {}}
             socialAccounts={headerFooter.global.social || {}}

@@ -35,7 +35,7 @@ const CustomFont = localFont({
         },
     ]
 })
-const Layout = ({children, favicon, headerFooter, socialAccounts, className = '', siteTitle, metaData}) => {
+const Layout = ({children, favicon, headerFooter, socialAccounts, className = '', siteTitle, metaData, headerIcon}) => {
     const {
         title,
         desc,
@@ -82,7 +82,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                         dangerouslySetInnerHTML={{__html: sanitize(schema)}}
                 />
             </Head>
-            <Navbar header={headerFooter} social={socialAccounts}/>
+            <Navbar header={headerFooter} social={socialAccounts} icon={headerIcon}/>
             <main className={`w-full h-full inline-block z-0 bg-light dark:bg-dark px-20 sm:px-5 ${className}`}>
                 {children}
                 <BackToTopButton />

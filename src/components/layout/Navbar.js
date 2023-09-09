@@ -39,9 +39,9 @@ const CustomLinkMobile = ({ href, title, className = '', toggle, icon, active })
         </Link>
     );
 };
-const Navbar = ({header, social}) => {
+const Navbar = ({header, social, icon}) => {
     const [mode, setMode] = useThemeSwitcher();
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
         setIsOpen(!isOpen)
@@ -156,7 +156,7 @@ const Navbar = ({header, social}) => {
             </button>
 
             <div className={'absolute left-[50%] top-2 translate-x-[-50%]'}>
-                <Logo/>
+                <Logo icon={icon}/>
             </div>
         </header>
     )

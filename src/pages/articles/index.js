@@ -121,6 +121,8 @@ const Articles = ({favicon, headerFooter, allPosts, meta}) => {
 
     return (
         <Layout
+
+            headerIcon={headerFooter.global.icon.site_logo}
             favicon={favicon.global.icon}
             headerFooter={headerFooter.global.menu || {}}
             socialAccounts={headerFooter.global.social || {}}

@@ -37,6 +37,7 @@ const About = ({favicon, headerFooter, about, meta}) => {
     const services = about.main.services
     return (
         <Layout
+            headerIcon={headerFooter.global.icon.site_logo}
             favicon={favicon.global.icon}
             headerFooter={headerFooter.global.menu || {}}
             socialAccounts={headerFooter.global.social || {}}
