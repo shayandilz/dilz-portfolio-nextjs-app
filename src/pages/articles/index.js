@@ -70,7 +70,7 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height, al
             <div
                 className='absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark dark:bg-light rounded-br-3xl'/>
             <Link href={link}
-                  className={'w-full cursor-pointer overflow-hidden rounded-lg inline-block'}>
+                  className={'w-full cursor-pointer overflow-hidden rounded-lg inline-block border border-1 border-dark/40 rounded-xl'}>
                 <FramerImage
                     src={img}
                     alt={alt}
