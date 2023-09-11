@@ -19,7 +19,7 @@ const WeatherWidget = () => {
         // Fetch city suggestions from the WeatherAPI
         const fetchCitySuggestions = async () => {
             try {
-                const suggestUrl = `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${cityName}`;
+                const suggestUrl = `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${cityName}`;
                 const response = await fetch(suggestUrl);
                 const data = await response.json();
                 setSuggestions(data.map((city) => city.name));
@@ -34,7 +34,7 @@ const WeatherWidget = () => {
     const handleCitySelect = async (selectedCity) => {
         // Fetch weather data for the selected city from the WeatherAPI
         try {
-            const weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${selectedCity}`;
+            const weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${selectedCity}`;
             const response = await fetch(weatherUrl);
             const data = await response.json();
             setWeatherData(data);
