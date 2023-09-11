@@ -75,27 +75,37 @@ const WeatherWidget = () => {
                     value={cityName}
                     onChange={(e) => setCityName(e.target.value)}
                     onKeyDown={handleKeyDown}
+                    className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
                 />
-                <ul className="suggestions">
-                    {suggestions.map((city, index) => (
-                        <li key={index} onClick={() => handleCitySelect(city)}>
-                            {city}
-                        </li>
-                    ))}
-                </ul>
+                {suggestions.length > 0 && (
+                    <ul className="suggestions dropdown-menu">
+                        {suggestions.map((city, index) => (
+                            <li
+                                key={index}
+                                onClick={() => handleCitySelect(city)}
+                                className="dropdown-item cursor-pointer hover:bg-gray-100 p-2"
+                            >
+                                {city}
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
             {weatherData ? (
                 <div>
-                    <h3>Current Weather</h3>
+                    <h3 className="text-lg font-semibold">Current Weather</h3>
                     <p>Location: {weatherData.location.name}</p>
                     <p>Temperature: {weatherData.current.temp_c}°C</p>
                     <img
                         src={weatherData.current.condition.icon}
                         alt={weatherData.current.condition.text}
+                        className="w-16 h-16"
                     />
                 </div>
             ) : (
-                <p>Enter a city name to see weather information.</p>
+                <p className="mt-4 text-gray-500">
+                    Enter a city name to see weather information.
+                </p>
             )}
         </div>
     );
