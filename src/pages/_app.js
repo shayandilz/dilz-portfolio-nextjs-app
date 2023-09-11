@@ -9,8 +9,6 @@ function MyApp({ Component, pageProps }) {
     return (
         <>
             <AnimatePresence mode={'wait'}>
-                <Component key={router.asPath} {...pageProps} />
-                {/*<Analytics />*/}
                 <Script
                     strategy="afterInteractive"
                     src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -26,6 +24,9 @@ function MyApp({ Component, pageProps }) {
                     });
                 `}
                 </Script>
+                <Component key={router.asPath} {...pageProps} />
+                {/*<Analytics />*/}
+
             </AnimatePresence>
         </>
     )
