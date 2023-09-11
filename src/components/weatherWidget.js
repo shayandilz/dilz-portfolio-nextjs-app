@@ -1,11 +1,12 @@
-// WeatherWidget.js
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const WeatherWidget = () => {
     const [cityName, setCityName] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [weatherData, setWeatherData] = useState(null);
     const [typingTimer, setTypingTimer] = useState(null);
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
     // Define your WeatherAPI key
     const apiKey = '424e382e7ed347fe86484215231109';
@@ -36,6 +37,7 @@ const WeatherWidget = () => {
             const response = await fetch(suggestUrl);
             const data = await response.json();
             setSuggestions(data.map((city) => city.name));
+            setShowSuggestions(true); // Show suggestions when data is available
         } catch (error) {
             console.error('Error fetching city suggestions:', error);
         }
@@ -50,6 +52,7 @@ const WeatherWidget = () => {
             setWeatherData(data);
             setCityName(''); // Clear the input field
             setSuggestions([]); // Clear suggestions
+            setShowSuggestions(false); // Hide suggestions after selection
         } catch (error) {
             console.error('Error fetching weather data:', error);
         }
@@ -67,8 +70,8 @@ const WeatherWidget = () => {
     };
 
     return (
-        <div className="weather-widget">
-            <div className="search">
+        <div className="weather-widget relative">
+            <div className="search relative">
                 <input
                     type="text"
                     placeholder="Enter a city name"
@@ -77,19 +80,31 @@ const WeatherWidget = () => {
                     onKeyDown={handleKeyDown}
                     className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
                 />
-                {suggestions.length > 0 && (
-                    <ul className="suggestions dropdown-menu">
-                        {suggestions.map((city, index) => (
-                            <li
-                                key={index}
-                                onClick={() => handleCitySelect(city)}
-                                className="dropdown-item cursor-pointer hover:bg-gray-100 p-2"
-                            >
-                                {city}
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <AnimatePresence>
+                    {showSuggestions && (
+                        <motion.div
+                            className="tooltip top-0 right-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg"
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                        >
+                            <ul className="suggestions">
+                                {suggestions.map((city, index) => (
+                                    <motion.li
+                                        key={index}
+                                        onClick={() => handleCitySelect(city)}
+                                        className="p-2 cursor-pointer hover:bg-gray-100"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                    >
+                                        {city}
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
             {weatherData ? (
                 <div>
