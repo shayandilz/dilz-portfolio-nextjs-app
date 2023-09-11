@@ -70,7 +70,7 @@ const WeatherWidget = () => {
     };
 
     return (
-        <div className="weather-widget relative">
+        <div className="weather-widget relative mt-10">
             <div className="search relative">
                 <input
                     type="text"
