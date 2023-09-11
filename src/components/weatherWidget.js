@@ -25,7 +25,7 @@ const WeatherWidget = () => {
         // Set a timer to fetch city suggestions after 1 second of inactivity
         const timer = setTimeout(() => {
             fetchCitySuggestions();
-        }, 1000);
+        }, 500);
 
         // Store the timer ID in the state
         setTypingTimer(timer);
@@ -100,6 +100,7 @@ const WeatherWidget = () => {
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -10 }}
+                                        transition={{ delay: index * 0.1 }} // Delay by 0.1s for each item
                                     >
                                         {city}
                                     </motion.li>
