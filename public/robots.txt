@@ -12,6 +12,7 @@ Disallow: /admin/
 # Allow access to certain directories or pages that should be indexed.
 # This can be useful when blocking entire directories but allowing specific content within them.
 Allow: /public/
+Allow: /about
 
 # Specify the location of your XML sitemap.
 Sitemap: https://codecraftconnect.com/sitemap.xml
