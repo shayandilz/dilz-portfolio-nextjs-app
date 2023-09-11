@@ -5,7 +5,6 @@ import Footer from './Footer';
 import BackToTopButton from "@/src/components/BackToTopButton";
 import {sanitize} from "@/src/utils/miscellaneous";
 import localFont from "@next/font/local";
-import Script from "next/script";
 
 const CustomFont = localFont({
     src: [
@@ -82,21 +81,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                         key={'yoastSchema'}
                         dangerouslySetInnerHTML={{__html: sanitize(schema)}}
                 />
-                <Script
-                    strategy="afterInteractive"
-                    src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-                />
 
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                    page_path: window.location.pathname,
-                    });
-                `}
-                </Script>
             </Head>
             <Navbar header={headerFooter} social={socialAccounts} icon={headerIcon}/>
             <main className={`w-full h-full inline-block z-0 bg-light dark:bg-dark px-20 sm:px-5 ${className}`}>
