@@ -112,9 +112,9 @@ const WeatherWidget = () => {
             </div>
             {weatherData ? (
                 <div className={'mt-5'}>
-                    <p className="text-lg">Current Weather : <span className={'font-semibold'}>{weatherData.location.name}</span></p>
+                    <p>Current Weather : <span className={'font-semibold'}>{weatherData.location.name}</span></p>
                     <div className={'inline-flex gap-5 items-center justify-center'}>
-                        <p>Temperature: {weatherData.current.temp_c}°C</p>
+                        <p>Temperature: <span className={'font-semibold'}>{weatherData.current.temp_c}°C</span></p>
                         <img
                             src={weatherData.current.condition.icon}
                             alt={weatherData.current.condition.text}
