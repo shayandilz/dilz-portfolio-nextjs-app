@@ -15,8 +15,8 @@ export default function Document() {
                     }
           `}
             </Script>
-            <Script async src="https://www.googletagmanager.com/gtag/js?id=G-VTB76M893Q"></Script>
-            <Script>
+            <Script src="https://www.googletagmanager.com/gtag/js?id=G-VTB76M893Q" />
+            <Script id={'google-analytics'}>
                 {
                     `
                         window.dataLayer = window.dataLayer || [];
