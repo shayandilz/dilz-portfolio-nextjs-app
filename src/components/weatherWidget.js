@@ -1,3 +1,4 @@
+
 // WeatherWidget.js
 import React, { useState, useEffect } from 'react';
 
@@ -15,27 +16,25 @@ const WeatherWidget = () => {
             return;
         }
 
-        // Fetch city suggestions from the Next.js API route
+        // Fetch city suggestions from the WeatherAPI
         const fetchCitySuggestions = async () => {
             try {
-                const response = await fetch(`/api/cities`);
+                const suggestUrl = `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${cityName}`;
+                const response = await fetch(suggestUrl);
                 const data = await response.json();
-                const filteredSuggestions = data.filter((city) =>
-                    city.name.toLowerCase().startsWith(cityName.toLowerCase())
-                );
-                setSuggestions(filteredSuggestions.map((city) => city.name));
+                setSuggestions(data.map((city) => city.name));
             } catch (error) {
                 console.error('Error fetching city suggestions:', error);
             }
         };
 
         fetchCitySuggestions();
-    }, [cityName]);
+    }, [cityName, apiKey]);
 
     const handleCitySelect = async (selectedCity) => {
-        // Fetch weather data for the selected city
+        // Fetch weather data for the selected city from the WeatherAPI
         try {
-            const weatherUrl = `https://api.weatherprovider.com/current?q=${selectedCity}&appid=${apiKey}`;
+            const weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${selectedCity}`;
             const response = await fetch(weatherUrl);
             const data = await response.json();
             setWeatherData(data);
@@ -66,9 +65,9 @@ const WeatherWidget = () => {
             {weatherData ? (
                 <div>
                     <h3>Current Weather</h3>
-                    <p>Location: {weatherData.name}</p>
-                    <p>Temperature: {weatherData.main.temp}°C</p>
-                    <p>Conditions: {weatherData.weather[0].description}</p>
+                    <p>Location: {weatherData.location.name}</p>
+                    <p>Temperature: {weatherData.current.temp_c}°C</p>
+                    <p>Conditions: {weatherData.current.condition.text}</p>
                 </div>
             ) : (
                 <p>Enter a city name to see weather information.</p>
@@ -78,3 +77,4 @@ const WeatherWidget = () => {
 };
 
 export default WeatherWidget;
+
