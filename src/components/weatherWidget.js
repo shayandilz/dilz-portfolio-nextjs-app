@@ -81,7 +81,7 @@ const WeatherWidget = () => {
                     value={cityName}
                     onChange={(e) => setCityName(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                    className="px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500 dark:text-dark"
                 />
                 <AnimatePresence>
                     {showSuggestions && (
@@ -96,7 +96,7 @@ const WeatherWidget = () => {
                                     <motion.li
                                         key={index}
                                         onClick={() => handleCitySelect(city)}
-                                        className="p-2 cursor-pointer hover:bg-gray-100"
+                                        className="p-2 cursor-pointer hover:bg-gray-100 dark:text-dark"
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -10 }}
@@ -123,7 +123,7 @@ const WeatherWidget = () => {
                     </div>
                 </div>
             ) : (
-                <p className="mt-4 text-gray-500">
+                <p className="mt-4 text-gray-500 dark:text-light">
                     Enter a city name to see weather information.
                 </p>
             )}
