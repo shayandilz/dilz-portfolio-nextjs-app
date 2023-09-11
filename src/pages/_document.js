@@ -15,17 +15,20 @@ export default function Document() {
                     }
           `}
             </Script>
-            <Script src="https://www.googletagmanager.com/gtag/js?id=G-VTB76M893Q" />
-            <Script id={'google-analytics'}>
-                {
-                    `
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-    
-                        gtag('config', 'G-VTB76M893Q');
-                    `
-                }
+            <Script
+                strategy="lazyOnload"
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+            />
+
+            <Script strategy="lazyOnload">
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                    page_path: window.location.pathname,
+                    });
+                `}
             </Script>
             <Main/>
             <NextScript/>
