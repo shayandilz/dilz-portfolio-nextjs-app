@@ -68,7 +68,10 @@ const About = ({favicon, headerFooter, about, meta}) => {
                                 </div>
                             )) : null}
                         </div>
-                        <div className="col-span-3 xl:col-span-10 items-center ">
+                        <div className="col-span-3 xl:col-span-10 items-center md:mt-5 md:border-1 md:border-t md:pt-10">
+                            <h2 className="text-center text-6xl mb-32 md:text-6xl xs:text-4xl md:mb-16 hidden md:block">
+                                Services
+                            </h2>
                             <Services services={services} />
                         </div>
                     </div>

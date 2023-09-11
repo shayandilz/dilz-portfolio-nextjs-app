@@ -27,7 +27,7 @@ const Experience = ({experience}) => {
         offset: ['start end', 'center start']
     })
     return (
-        <div className={'my-64'}>
+        <div className={'my-64 md:my-[7rem] md:border-1 md:border-t md:pt-5'}>
             <h2 className="text-center text-6xl mb-32 md:text-6xl xs:text-4xl md:mb-16">
                 {experience.title}
             </h2>

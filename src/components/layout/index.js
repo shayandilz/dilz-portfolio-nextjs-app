@@ -89,7 +89,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                 {children}
                 <BackToTopButton />
             </main>
-            <Footer/>
+            <Footer icon={headerIcon} header={headerFooter}/>
         </div>
     );
 };
