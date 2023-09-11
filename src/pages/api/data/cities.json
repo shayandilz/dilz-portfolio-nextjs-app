@@ -1,0 +1,183 @@
+// cities.json
+[
+  {
+    "name": "New York",
+    "country": "US"
+  },
+  {
+    "name": "Los Angeles",
+    "country": "US"
+  },
+  {
+    "name": "Chicago",
+    "country": "US"
+  },
+  {
+    "name": "San Francisco",
+    "country": "US"
+  },
+  {
+    "name": "Miami",
+    "country": "US"
+  },
+  {
+    "name": "Toronto",
+    "country": "CA"
+  },
+  {
+    "name": "Vancouver",
+    "country": "CA"
+  },
+  {
+    "name": "London",
+    "country": "GB"
+  },
+  {
+    "name": "Paris",
+    "country": "FR"
+  },
+  {
+    "name": "Berlin",
+    "country": "DE"
+  },
+  {
+    "name": "Madrid",
+    "country": "ES"
+  },
+  {
+    "name": "Rome",
+    "country": "IT"
+  },
+  {
+    "name": "Amsterdam",
+    "country": "NL"
+  },
+  {
+    "name": "Tokyo",
+    "country": "JP"
+  },
+  {
+    "name": "Sydney",
+    "country": "AU"
+  },
+  {
+    "name": "Beijing",
+    "country": "CN"
+  },
+  {
+    "name": "Shanghai",
+    "country": "CN"
+  },
+  {
+    "name": "Moscow",
+    "country": "RU"
+  },
+  {
+    "name": "Dubai",
+    "country": "AE"
+  },
+  {
+    "name": "Mumbai",
+    "country": "IN"
+  },
+  {
+    "name": "Cairo",
+    "country": "EG"
+  },
+  {
+    "name": "Cape Town",
+    "country": "ZA"
+  },
+  {
+    "name": "Rio de Janeiro",
+    "country": "BR"
+  },
+  {
+    "name": "Buenos Aires",
+    "country": "AR"
+  },
+  {
+    "name": "Mexico City",
+    "country": "MX"
+  },
+  {
+    "name": "Toronto",
+    "country": "CA"
+  },
+  {
+    "name": "Vancouver",
+    "country": "CA"
+  },
+  {
+    "name": "London",
+    "country": "GB"
+  },
+  {
+    "name": "Paris",
+    "country": "FR"
+  },
+  {
+    "name": "Berlin",
+    "country": "DE"
+  },
+  {
+    "name": "Madrid",
+    "country": "ES"
+  },
+  {
+    "name": "Rome",
+    "country": "IT"
+  },
+  {
+    "name": "Amsterdam",
+    "country": "NL"
+  },
+  {
+    "name": "Tokyo",
+    "country": "JP"
+  },
+  {
+    "name": "Sydney",
+    "country": "AU"
+  },
+  {
+    "name": "Beijing",
+    "country": "CN"
+  },
+  {
+    "name": "Shanghai",
+    "country": "CN"
+  },
+  {
+    "name": "Moscow",
+    "country": "RU"
+  },
+  {
+    "name": "Dubai",
+    "country": "AE"
+  },
+  {
+    "name": "Mumbai",
+    "country": "IN"
+  },
+  {
+    "name": "Cairo",
+    "country": "EG"
+  },
+  {
+    "name": "Cape Town",
+    "country": "ZA"
+  },
+  {
+    "name": "Rio de Janeiro",
+    "country": "BR"
+  },
+  {
+    "name": "Buenos Aires",
+    "country": "AR"
+  },
+  {
+    "name": "Mexico City",
+    "country": "MX"
+  }
+]

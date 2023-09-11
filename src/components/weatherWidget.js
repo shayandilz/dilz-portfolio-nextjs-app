@@ -15,20 +15,22 @@ const WeatherWidget = () => {
             return;
         }
 
-        // Fetch city suggestions based on user input
-        const suggestCities = async () => {
+        // Fetch city suggestions from the Next.js API route
+        const fetchCitySuggestions = async () => {
             try {
-                const suggestUrl = `https://api.weatherprovider.com/search.json?key=${apiKey}&q=${cityName}`;
-                const response = await fetch(suggestUrl);
+                const response = await fetch(`/api/cities`);
                 const data = await response.json();
-                setSuggestions(data.map((city) => city.name));
+                const filteredSuggestions = data.filter((city) =>
+                    city.name.toLowerCase().startsWith(cityName.toLowerCase())
+                );
+                setSuggestions(filteredSuggestions.map((city) => city.name));
             } catch (error) {
                 console.error('Error fetching city suggestions:', error);
             }
         };
 
-        suggestCities();
-    }, [cityName, apiKey]);
+        fetchCitySuggestions();
+    }, [cityName]);
 
     const handleCitySelect = async (selectedCity) => {
         // Fetch weather data for the selected city
