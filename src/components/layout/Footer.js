@@ -24,7 +24,7 @@ const Footer = ({header, social, icon}) => {
     return (
 
         <footer className={'pb-3'}>
-            <div className="bg-white rounded-lg shadow dark:bg-light/10 mx-5 mb-2 lg:my-20 text-center">
+            <div className="bg-white rounded-lg shadow dark:bg-light/10 pt-4 mx-5 mb-2 lg:my-20 text-center">
                 <Logo icon={icon}/>
                 <div className="w-full mx-auto max-w-screen-xl p-4 md:flex flex-col md:items-center md:justify-between">
                     <nav className={'flex gap-4 justify-center pt-3 pb-3'}>
