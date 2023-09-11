@@ -1,4 +1,3 @@
-
 // WeatherWidget.js
 import React, { useState, useEffect } from 'react';
 
@@ -6,6 +5,7 @@ const WeatherWidget = () => {
     const [cityName, setCityName] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [weatherData, setWeatherData] = useState(null);
+    const [typingTimer, setTypingTimer] = useState(null);
 
     // Define your WeatherAPI key
     const apiKey = '424e382e7ed347fe86484215231109';
@@ -16,20 +16,30 @@ const WeatherWidget = () => {
             return;
         }
 
-        // Fetch city suggestions from the WeatherAPI
-        const fetchCitySuggestions = async () => {
-            try {
-                const suggestUrl = `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${cityName}`;
-                const response = await fetch(suggestUrl);
-                const data = await response.json();
-                setSuggestions(data.map((city) => city.name));
-            } catch (error) {
-                console.error('Error fetching city suggestions:', error);
-            }
-        };
+        // Clear any existing timer
+        if (typingTimer) {
+            clearTimeout(typingTimer);
+        }
 
-        fetchCitySuggestions();
-    }, [cityName, apiKey]);
+        // Set a timer to fetch city suggestions after 1 second of inactivity
+        const timer = setTimeout(() => {
+            fetchCitySuggestions();
+        }, 1000);
+
+        // Store the timer ID in the state
+        setTypingTimer(timer);
+    }, [cityName]);
+
+    const fetchCitySuggestions = async () => {
+        try {
+            const suggestUrl = `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${cityName}`;
+            const response = await fetch(suggestUrl);
+            const data = await response.json();
+            setSuggestions(data.map((city) => city.name));
+        } catch (error) {
+            console.error('Error fetching city suggestions:', error);
+        }
+    };
 
     const handleCitySelect = async (selectedCity) => {
         // Fetch weather data for the selected city from the WeatherAPI
@@ -45,6 +55,17 @@ const WeatherWidget = () => {
         }
     };
 
+    const handleKeyDown = (e) => {
+        // Handle "Enter" key press
+        if (e.key === 'Enter') {
+            // Clear any existing timer
+            if (typingTimer) {
+                clearTimeout(typingTimer);
+            }
+            fetchCitySuggestions();
+        }
+    };
+
     return (
         <div className="weather-widget">
             <div className="search">
@@ -53,6 +74,7 @@ const WeatherWidget = () => {
                     placeholder="Enter a city name"
                     value={cityName}
                     onChange={(e) => setCityName(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
                 <ul className="suggestions">
                     {suggestions.map((city, index) => (
@@ -67,7 +89,10 @@ const WeatherWidget = () => {
                     <h3>Current Weather</h3>
                     <p>Location: {weatherData.location.name}</p>
                     <p>Temperature: {weatherData.current.temp_c}°C</p>
-                    <p>Conditions: {weatherData.current.condition.text}</p>
+                    <img
+                        src={weatherData.current.condition.icon}
+                        alt={weatherData.current.condition.text}
+                    />
                 </div>
             ) : (
                 <p>Enter a city name to see weather information.</p>
@@ -77,4 +102,3 @@ const WeatherWidget = () => {
 };
 
 export default WeatherWidget;
-
