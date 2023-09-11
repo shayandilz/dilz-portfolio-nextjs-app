@@ -83,7 +83,7 @@ const WeatherWidget = () => {
                 <AnimatePresence>
                     {showSuggestions && (
                         <motion.div
-                            className="tooltip top-0 right-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg"
+                            className="tooltip mx-auto top-0 right-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg"
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
@@ -107,15 +107,16 @@ const WeatherWidget = () => {
                 </AnimatePresence>
             </div>
             {weatherData ? (
-                <div>
-                    <h3 className="text-lg font-semibold">Current Weather</h3>
-                    <p>Location: {weatherData.location.name}</p>
-                    <p>Temperature: {weatherData.current.temp_c}°C</p>
-                    <img
-                        src={weatherData.current.condition.icon}
-                        alt={weatherData.current.condition.text}
-                        className="w-16 h-16"
-                    />
+                <div className={'mt-5'}>
+                    <h3 className="text-lg font-semibold">Current Weather : {weatherData.location.name}</h3>
+                    <div className={'inline-flex gap-10'}>
+                        <p>Temperature: {weatherData.current.temp_c}°C</p>
+                        <img
+                            src={weatherData.current.condition.icon}
+                            alt={weatherData.current.condition.text}
+                            className="w-16 h-16"
+                        />
+                    </div>
                 </div>
             ) : (
                 <p className="mt-4 text-gray-500">
