@@ -9,6 +9,11 @@ const nextConfig = {
                 hostname: 'shayan.website',
                 port: '',
                 pathname: '/**'
+            },{
+                protocol: 'https',
+                hostname: 'panelwp-lwuzspg4ry.liara.run',
+                port: '',
+                pathname: '/**'
             }
         ]
     },
