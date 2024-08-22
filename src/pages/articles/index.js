@@ -7,7 +7,6 @@ import TransitionEffect from "../../components/TransitionEffect";
 import Layout from "@/src/components/layout";
 import {fetchCommonData, fetchPostData} from "@/src/utils/fetchData";
 import LoadMore from "@/src/components/loadMore";
-import {isBoolean} from "lodash";
 
 
 const FramerImage = motion(Image);
@@ -70,7 +69,7 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height, al
             <div
                 className='absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark dark:bg-light rounded-br-3xl'/>
             <Link href={link}
-                  className={'w-full cursor-pointer overflow-hidden rounded-lg inline-block border border-1 border-dark/40 rounded-xl'}>
+                  className={'w-full cursor-pointer overflow-hidden inline-block border border-1 border-dark/40 rounded-xl'}>
                 <FramerImage
                     src={img}
                     alt={alt}
@@ -122,10 +121,10 @@ const Articles = ({favicon, headerFooter, allPosts, meta}) => {
     return (
         <Layout
 
-            headerIcon={headerFooter.global.icon.site_logo}
-            favicon={favicon.global.icon}
-            headerFooter={headerFooter.global.menu || {}}
-            socialAccounts={headerFooter.global.social || {}}
+            headerIcon={headerFooter?.global?.icon?.site_logo}
+            favicon={favicon?.global?.icon}
+            headerFooter={headerFooter?.global?.menu || {}}
+            socialAccounts={headerFooter?.global?.social || {}}
             metaData={meta}
         >
             <TransitionEffect/>
@@ -135,15 +134,15 @@ const Articles = ({favicon, headerFooter, allPosts, meta}) => {
                     <ul className={'grid grid-cols-2 gap-16 lg-gap-8 md:grid-cols-1 md:gap-y-16'}>
                         {featuredPosts.map((post) => (
                             <FeaturedArticle
-                                key={post.ID}
-                                title={post.title}
-                                link={`/articles/${post.slug}`}
-                                img={post.media.thumbnail}
-                                alt={post.media.alt}
-                                width={post.media.thumbnail_width}
-                                height={post.media.thumbnail_height}
-                                summary={post.excerpt}
-                                time={post.reading_time + ' minute'}
+                                key={post?.ID}
+                                title={post?.title}
+                                link={`/articles/${post?.slug}`}
+                                img={post?.media?.thumbnail}
+                                alt={post?.media?.alt}
+                                width={post?.media?.thumbnail_width}
+                                height={post?.media?.thumbnail_height}
+                                summary={post?.excerpt}
+                                time={post?.reading_time + ' minute'}
                             />
                         ))}
                     </ul>
