@@ -18,7 +18,7 @@ Allow: /about/
 Allow: /articles/html-fundamentals-building-blocks/
 
 # Specify the location of your XML sitemap.
-Sitemap: https://codecraftconnect.com/sitemap.xml
+Sitemap: https://shayan.website/sitemap.xml
 
 
 # You can include more user-agent specific rules as needed.

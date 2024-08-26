@@ -34,7 +34,7 @@ const Footer = ({header, social, icon}) => {
                     </nav>
                     <WeatherWidget />
                     <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 ">© 2023
-                      <a href="https://codecraftconnect.com" className="hover:underline"> CodeCraftConnect™</a>. All Rights Reserved.
+                      <Link href="/" className="hover:underline"> CodeCraftConnect™</Link>. All Rights Reserved.
                     </span>
                 </div>
             </div>

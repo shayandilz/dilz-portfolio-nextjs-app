@@ -4,7 +4,7 @@ const Sitemap = () => {
     return null;
 };
 export const getServerSideProps = async ({ res }) => {
-    const BASE_URL = "https://codecraftconnect.com";
+    const BASE_URL = "https://shayan.website";
 
     const staticPaths = fs
         .readdirSync("src/pages")

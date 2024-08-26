@@ -13,7 +13,7 @@ export async function getServerSideProps({ res }) {
      ${details.map((item) => getSitemapPages(item)).join("")}
      <sitemap>
      <loc>
-        https://codecraftconnect.com/sitemapnextjs.xml
+        https://shayan.website/sitemapnextjs.xml
     </loc>
 </sitemap>
   </sitemapindex>`;
