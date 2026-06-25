@@ -3,7 +3,7 @@ name: Deploy Next.js to Server
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   REGISTRY: ghcr.io
