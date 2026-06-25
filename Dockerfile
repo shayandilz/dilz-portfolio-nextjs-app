@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 # Install pnpm globally so it is available in all subsequent stages
 RUN npm install -g pnpm
 
@@ -8,7 +8,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm i --frozen-lockfile
+RUN pnpm config set ignore-scripts false && pnpm i --frozen-lockfile
 
 # Step 2: Rebuild the source code
 FROM base AS builder
