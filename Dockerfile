@@ -1,18 +1,25 @@
 FROM node:18-alpine AS base
+# Install pnpm globally so it is available in all subsequent stages
+RUN npm install -g pnpm
 
+# Step 1: Install dependencies
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
+# Added build tools for native dependencies
+RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable pnpm && pnpm i --frozen-lockfile
+RUN pnpm i --frozen-lockfile
 
+# Step 2: Rebuild the source code
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm run build
+# Use pnpm to build
+RUN pnpm run build
 
+# Step 3: Production runner
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
