@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import Footer from './Footer';
 import BackToTopButton from "@/src/components/BackToTopButton";
 import {sanitize} from "@/src/utils/miscellaneous";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 import Script from "next/script";
 
 const CustomFont = localFont({
