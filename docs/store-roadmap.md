@@ -65,7 +65,7 @@ Secondary jobs:
 | Brand name | Choose a Persian-friendly brand (for example «دیلز وردپرس») | The marketplaces show a seller name, so the site, seller profiles and plugin headers should all use the same name. |
 | Exclusivity | **Check before listing anything** | Both marketplaces set commission based on whether a product is exclusive. Listing the same product on both may break exclusivity terms or lower your revenue share. Read the current seller agreements and decide per product. |
 | Links to marketplaces | Use affiliate links if allowed, with UTM parameters | Both marketplaces have affiliate (همکاری در فروش) programs. Confirm that sellers may use them for their own products. |
-| Direct sales | Not in v1 (see Phase 7) | Marketplace terms may restrict selling the same product elsewhere. Licensing and invoicing add a lot of work. |
+| Direct sales | **None.** The site is a showcase; every sale happens on Zhaket or RTL Theme | The marketplaces handle payment, licences, refunds and support tickets, which keeps the income passive. |
 
 ### B3. Architecture
 
@@ -223,13 +223,12 @@ tools/release.sh             build assets, strip dev files, zip, generate change
 | **4. Demos** | 5–7 | `demo.shayan.website` multisite with nightly reset | Demo resets automatically; a visitor cannot break it |
 | **5. SEO, analytics, launch** | 7–8 | JSON-LD, sitemap, OG images, GA4 events, Search Console, menu entry from the English site | Pages indexed; outbound clicks tracked |
 | **6. Product pipeline** | Starts in parallel with Phase 2, ongoing | `dilz-wp-products` repo, starters, license SDK, CI, first plugin submitted | First product approved on one marketplace and listed on the store |
-| **7. Optional: direct sales** | Later | Zarinpal or IDPay checkout, license server, update server, invoices | Only if marketplace terms allow and the volume justifies it |
 
 **Deploy notes:** the store ships in the same Docker image, so no CI changes are needed beyond adding a `REVALIDATE_SECRET` runtime env var. Pass it to the container at runtime, not as a build arg, so it isn't baked into the image. The WP mu-plugin ships through the `wp-content-sync` image as it does today.
 
 ## Risks
 
-- **Marketplace terms**: exclusivity, outbound linking and direct-sales rules decide Phase 7 and the store's call-to-action design. Read them before building the product page.
+- **Marketplace terms**: exclusivity and outbound-linking rules decide the store's call-to-action design. Read them before building the product page.
 - **Pages Router and App Router together**: two root layouts and a full reload between sections. Shared components must not depend on `next/router`, since the App Router uses `next/navigation`.
 - **Single server**: WP, demos and the frontend share one VPS, and Watchtower auto-updates images. Pin versions and monitor memory once demos exist.
 - **Price drift**: marketplace prices change. Label prices as «قیمت در زمان انتشار» and keep the marketplace link as the source of truth.
