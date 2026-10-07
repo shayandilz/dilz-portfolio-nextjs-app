@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Store-only styles. The English portfolio uses src/styles/globals.css. */
+
+:root {
+    --store-ink: #0f172a;
+    --store-brand: #4338ca;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    @apply bg-slate-50 text-slate-700 antialiased;
+    line-height: 1.9;
+}
+
+h1, h2, h3, h4 {
+    @apply text-slate-900;
+    line-height: 1.5;
+}
+
+:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-indigo-600;
+}
+
+@layer components {
+    .store-container {
+        @apply mx-auto w-full max-w-6xl px-6 md:px-4;
+    }
+
+    .store-btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition-colors duration-150;
+    }
+
+    .store-btn-primary {
+        @apply store-btn bg-indigo-700 text-white hover:bg-indigo-800;
+    }
+
+    .store-btn-secondary {
+        @apply store-btn border border-slate-300 bg-white text-slate-900 hover:border-indigo-700 hover:text-indigo-700;
+    }
+
+    .store-btn-accent {
+        @apply store-btn bg-amber-400 text-slate-900 hover:bg-amber-300;
+    }
+
+    .store-card {
+        @apply rounded-2xl border border-slate-200 bg-white;
+    }
+
+    .store-eyebrow {
+        @apply text-sm font-bold text-indigo-700;
+    }
+
+    .store-section-title {
+        @apply text-3xl font-extrabold text-slate-900 md:text-2xl;
+    }
+
+    /* WordPress content (product descriptions, docs, support policy) */
+    .store-prose {
+        @apply max-w-none text-base leading-8 text-slate-700;
+    }
+    .store-prose h2 {
+        @apply mb-3 mt-8 text-xl font-extrabold;
+    }
+    .store-prose h3 {
+        @apply mb-2 mt-6 text-lg font-bold;
+    }
+    .store-prose p {
+        @apply my-3;
+    }
+    .store-prose ul {
+        @apply my-3 list-disc ps-6;
+    }
+    .store-prose ol {
+        @apply my-3 list-decimal ps-6;
+    }
+    .store-prose li {
+        @apply my-1;
+    }
+    .store-prose a {
+        @apply font-medium text-indigo-700 underline underline-offset-4;
+    }
+    .store-prose img {
+        @apply my-4 h-auto max-w-full rounded-xl;
+    }
+    .store-prose code {
+        @apply rounded bg-slate-100 px-1.5 py-0.5 text-sm;
+        direction: ltr;
+        unicode-bidi: isolate;
+    }
+    .store-prose pre {
+        @apply my-4 overflow-x-auto rounded-xl bg-slate-900 p-4 text-sm text-slate-100;
+        direction: ltr;
+        text-align: left;
+    }
+    .store-prose pre code {
+        @apply bg-transparent p-0;
+    }
+    .store-prose blockquote {
+        @apply my-4 border-s-4 border-indigo-200 ps-4 text-slate-600;
+    }
+    .store-prose table {
+        @apply my-4 w-full border-collapse text-sm;
+    }
+    .store-prose th, .store-prose td {
+        @apply border border-slate-200 p-2 text-start;
+    }
+}
+
+/* Native <details> used for menus, FAQ and changelog: hide the default marker */
+details > summary {
+    list-style: none;
+}
+details > summary::-webkit-details-marker {
+    display: none;
+}

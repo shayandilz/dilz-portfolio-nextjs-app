@@ -33,7 +33,7 @@ const Footer = ({header, social, icon}) => {
                         )) : null}
                     </nav>
                     <WeatherWidget />
-                    <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 ">© 2023
+                    <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 ">© {new Date().getFullYear()}
                       <Link href="/" className="hover:underline"> CodeCraftConnect™</Link>. All Rights Reserved.
                     </span>
                 </div>

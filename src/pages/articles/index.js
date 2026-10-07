@@ -5,7 +5,7 @@ import Image from "next/image";
 import {motion, useMotionValue} from "framer-motion";
 import TransitionEffect from "../../components/TransitionEffect";
 import Layout from "@/src/components/layout";
-import {fetchCommonData, fetchPostData} from "@/src/utils/fetchData";
+import {fetchCommonData, fetchPostData, pickSite, REVALIDATE_SECONDS} from "@/src/utils/fetchData";
 import LoadMore from "@/src/components/loadMore";
 
 
@@ -95,7 +95,7 @@ const FeaturedArticle = ({title, time, img, link, summary, id, width, height, al
     )
 }
 
-const Articles = ({favicon, headerFooter, allPosts, meta}) => {
+const Articles = ({site, allPosts, meta}) => {
     // Offset value to exclude the first two posts from featured articles
     const [hasNextPage, setNextPage] = useState(allPosts.pagination['hasNextPage'])
     const [isLoading, setLoading] = useState(false);
@@ -121,10 +121,10 @@ const Articles = ({favicon, headerFooter, allPosts, meta}) => {
     return (
         <Layout
 
-            headerIcon={headerFooter?.global?.icon?.site_logo}
-            favicon={favicon?.global?.icon}
-            headerFooter={headerFooter?.global?.menu || {}}
-            socialAccounts={headerFooter?.global?.social || {}}
+            headerIcon={site?.global?.icon?.site_logo}
+            favicon={site.global.icon}
+            headerFooter={site?.global?.menu || {}}
+            socialAccounts={site?.global?.social || {}}
             metaData={meta}
         >
             <TransitionEffect/>
@@ -174,10 +174,13 @@ export async function getStaticProps() {
     return {
         props: {
             meta: data?.pages?.articles?.yoast_meta ?? {},
-            favicon: data ?? {},
-            headerFooter: data ?? {},
-            allPosts: initialPosts,
+            site: pickSite(data),
+            // The listing only needs card fields; full content and comments stay on the post pages
+            allPosts: {
+                ...initialPosts,
+                posts: (initialPosts.posts ?? []).map(({content, comments, yoast_meta, ...post}) => post),
+            },
         },
-        revalidate: 1,
+        revalidate: REVALIDATE_SECONDS,
     }
 }

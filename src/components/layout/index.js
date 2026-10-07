@@ -3,9 +3,7 @@ import Head from 'next/head';
 import Navbar from './Navbar'
 import Footer from './Footer';
 import BackToTopButton from "@/src/components/BackToTopButton";
-import {sanitize} from "@/src/utils/miscellaneous";
 import localFont from "next/font/local";
-import Script from "next/script";
 
 const CustomFont = localFont({
     src: [
@@ -62,7 +60,7 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                 <link rel="canonical" href={canonical}/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <meta charSet="UTF-8"/>
-                <link href={favicon.url} rel="shortcut icon" type="image/png" />
+                {favicon?.url && <link href={favicon.url} rel="shortcut icon" type="image/png"/>}
                 <meta property="og:title" content={og_title}/>
                 <meta property="og:description" content={og_desc}/>
                 <meta property="og:image:width" content={width}/>
@@ -76,12 +74,13 @@ const Layout = ({children, favicon, headerFooter, socialAccounts, className = ''
                 <meta property="og:updated_time" content={og_update}/>
                 <meta property="article:published_time" content={og_publish}/>
                 <meta property="article:modified_time" content={og_modify}/>
-                <meta name="robots" content={meta_robots.index ?? {} + ', ' + meta_robots.follow ?? {}}/>
-                <script type="application/ld+json"
+                <meta name="robots" content={`${meta_robots?.index ?? 'index'}, ${meta_robots?.follow ?? 'follow'}`}/>
+                {/* schema is json_encode output from WordPress, which escapes "/" so it can't close the tag */}
+                {schema && <script type="application/ld+json"
                         className={'yoast-schema-graph'}
                         key={'yoastSchema'}
-                        dangerouslySetInnerHTML={{__html: sanitize(schema)}}
-                />
+                        dangerouslySetInnerHTML={{__html: schema}}
+                />}
 
             </Head>
             <Navbar header={headerFooter} social={socialAccounts} icon={headerIcon}/>

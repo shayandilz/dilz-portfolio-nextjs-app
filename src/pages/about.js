@@ -5,7 +5,7 @@ import {useInView, useMotionValue, useSpring} from "framer-motion";
 // import Skills from "@/components/Skills";
 import Experience from "../components/Experience";
 import TransitionEffect from "../components/TransitionEffect";
-import {fetchCommonData} from "@/src/utils/fetchData";
+import {fetchCommonData, pickSite, REVALIDATE_SECONDS} from "@/src/utils/fetchData";
 import {isEmpty} from "lodash";
 import Services from "@/src/components/Services";
 
@@ -31,16 +31,16 @@ const AnimatedNumbers = ({value}) => {
 
 }
 
-const About = ({favicon, headerFooter, about, meta}) => {
+const About = ({site, about, meta}) => {
     const features = about.main.bio.features
     const experience = about.main.experience
     const services = about.main.services
     return (
         <Layout
-            headerIcon={headerFooter.global.icon.site_logo}
-            favicon={favicon.global.icon}
-            headerFooter={headerFooter.global.menu || {}}
-            socialAccounts={headerFooter.global.social || {}}
+            headerIcon={site.global.icon.site_logo}
+            favicon={site.global.icon}
+            headerFooter={site.global.menu || {}}
+            socialAccounts={site.global.social || {}}
             siteTitle={about.data.title}
             metaData={meta}
         >
@@ -91,10 +91,9 @@ export async function getStaticProps() {
     return {
         props: {
             meta: data?.pages?.about?.yoast_meta ?? {},
-            favicon: data ?? {},
-            headerFooter: data ?? {},
+            site: pickSite(data),
             about: data?.pages?.about ?? {},
         },
-        revalidate: 1,
+        revalidate: REVALIDATE_SECONDS,
     }
 }

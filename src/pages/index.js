@@ -1,4 +1,4 @@
-import {fetchCommonData} from "../utils/fetchData";
+import {fetchCommonData, pickSite, REVALIDATE_SECONDS} from "../utils/fetchData";
 import Link from "next/link";
 import Image from "next/image";
 import AnimatedText from "../components/AnimatedText";
@@ -7,14 +7,14 @@ import HireMe from "../components/HireMe";
 import TransitionEffect from "../components/TransitionEffect";
 import Layout from '../components/layout';
 
-export default function Home({favicon, headerFooter, homepage, meta}) {
+export default function Home({site, homepage, meta}) {
 
     return (
         <Layout
-                headerIcon={headerFooter.global.icon.site_logo}
-                favicon={favicon.global.icon}
-                headerFooter={headerFooter.global.menu || {}}
-                socialAccounts={headerFooter.global.social || {}}
+                headerIcon={site.global.icon.site_logo}
+                favicon={site.global.icon}
+                headerFooter={site.global.menu || {}}
+                socialAccounts={site.global.social || {}}
                 siteTitle={homepage.data.title}
                 metaData={meta}
         >
@@ -46,7 +46,7 @@ export default function Home({favicon, headerFooter, homepage, meta}) {
                         </div>
                     </div>
                 </section>
-                <HireMe email={headerFooter.global.contact[0].email || {}}/>
+                <HireMe email={site.global.contact[0].email || {}}/>
             </div>
         </Layout>
     )
@@ -57,10 +57,9 @@ export async function getStaticProps() {
     return {
         props: {
             meta: data?.pages?.homepage?.yoast_meta ?? {},
-            favicon: data ?? {},
-            headerFooter: data ?? {},
+            site: pickSite(data),
             homepage: data?.pages?.homepage
         },
-        revalidate: 1,
+        revalidate: REVALIDATE_SECONDS,
     }
 }

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Layout from '@/src/components/layout';
-import {fetchCommonData, fetchPostData} from '@/src/utils/fetchData';
+import {fetchCommonData, fetchPostData, pickSite, REVALIDATE_SECONDS} from '@/src/utils/fetchData';
 import TransitionEffect from "@/src/components/TransitionEffect";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
 
-const Post = ({favicon, headerFooter, post }) => {
+const Post = ({site, post }) => {
     const router = useRouter();
     // Extract headings from post content
     const headings = extractHeadings(post.content);
@@ -24,10 +24,10 @@ const Post = ({favicon, headerFooter, post }) => {
     }
     return (
         <Layout
-            headerIcon={headerFooter.global.icon.site_logo}
-            favicon={favicon.global.icon}
-            headerFooter={headerFooter.global.menu || {}}
-            socialAccounts={headerFooter.global.social || {}}
+            headerIcon={site.global.icon.site_logo}
+            favicon={site.global.icon}
+            headerFooter={site.global.menu || {}}
+            socialAccounts={site.global.social || {}}
             siteTitle={post.title}
             metaData={post.yoast_meta}
         >
@@ -40,8 +40,7 @@ const Post = ({favicon, headerFooter, post }) => {
                     title={post.media.alt}
                     width={800}
                     height={500}
-                    objectFit="cover"
-                    className={'rounded-lg'}
+                    className={'rounded-lg object-cover'}
                 />
                 {/* Generate Table of Contents */}
                 {headings.length > 0 && (
@@ -73,8 +72,7 @@ const Post = ({favicon, headerFooter, post }) => {
                                         title={relatedPost.media.alt}
                                         width={800}
                                         height={500}
-                                        objectFit="cover"
-                                        className={'rounded-lg'}
+                                        className={'rounded-lg object-cover'}
                                     />
                                     <h3 className="text-lg font-semibold py-2">{relatedPost.title}</h3>
                                     <p className="text-sm dark:text-light text-gray-600" dangerouslySetInnerHTML={{ __html: relatedPost.excerpt }} />
@@ -126,22 +124,25 @@ export async function getStaticProps({ params }) {
     const page = 1;
     const perPage = -1;
     const initialPosts = await fetchPostData(page, perPage);
-    const post = initialPosts.posts.find((post) => post.slug === params.postSlug);
+    const post = (initialPosts.posts ?? []).find((post) => post.slug === params.postSlug);
+
+    if (!post) {
+        return {notFound: true, revalidate: REVALIDATE_SECONDS};
+    }
 
     return {
         props: {
-            favicon: data ?? {},
-            headerFooter: data ?? {},
+            site: pickSite(data),
             post,
         },
-        revalidate: 10,
+        revalidate: REVALIDATE_SECONDS,
     };
 }
 export async function getStaticPaths() {
     const page = 1;
     const perPage = -1;
     const initialPosts = await fetchPostData(page, perPage);
-    const paths = initialPosts.posts.map((post) => ({
+    const paths = (initialPosts.posts ?? []).map((post) => ({
         params: { postSlug: post.slug },
     }));
 

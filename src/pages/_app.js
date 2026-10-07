@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import {AnimatePresence} from "framer-motion";
 import {useRouter} from "next/router";
-import { Analytics } from '@vercel/analytics/react';
 import Script from "next/script";
 import React from "react";
 function MyApp({ Component, pageProps }) {
@@ -25,7 +24,6 @@ function MyApp({ Component, pageProps }) {
                 `}
                 </Script>
                 <Component key={router.asPath} {...pageProps} />
-                {/*<Analytics />*/}
 
             </AnimatePresence>
         </>

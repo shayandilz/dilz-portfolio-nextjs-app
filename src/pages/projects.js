@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {motion} from "framer-motion";
 import TransitionEffect from "../components/TransitionEffect";
-import {fetchCommonData} from "@/src/utils/fetchData";
+import {fetchCommonData, pickSite, REVALIDATE_SECONDS} from "@/src/utils/fetchData";
 import {isEmpty} from "lodash";
 const FramerImage = motion(Image)
 const FeaturedProject = ({type, title, year, img, link, github, category, client, alt}) => {
@@ -103,14 +103,14 @@ const Project = ({title, type, img, link, github,year, category, client, alt}) =
     )
 }
 
-const Projects = ({favicon,headerFooter, portfolio, pages, meta}) => {
+const Projects = ({site, portfolio, pages, meta}) => {
     let projects = '';
     return (
         <Layout
-            headerIcon={headerFooter.global.icon.site_logo}
-            favicon={favicon.global.icon}
-            headerFooter={headerFooter.global.menu || {}}
-            socialAccounts={headerFooter.global.social || {}}
+            headerIcon={site.global.icon.site_logo}
+            favicon={site.global.icon}
+            headerFooter={site.global.menu || {}}
+            socialAccounts={site.global.social || {}}
             siteTitle={pages.title}
             metaData={meta}
         >
@@ -163,12 +163,11 @@ export async function getStaticProps() {
 
     return {
         props: {
-            favicon: data ?? {},
+            site: pickSite(data),
             meta: data?.pages?.portfolio?.yoast_meta ?? {},
-            headerFooter: data ?? {},
             pages: data?.pages?.portfolio[0].data ?? {},
             portfolio: data?.portfolio ?? {},
         },
-        revalidate: 1,
+        revalidate: REVALIDATE_SECONDS,
     }
 }

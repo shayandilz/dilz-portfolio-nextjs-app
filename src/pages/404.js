@@ -3,14 +3,14 @@
  */
 import Link from 'next/link';
 import Layout from "@/src/components/layout";
-import {fetchCommonData} from "@/src/utils/fetchData";
+import {fetchCommonData, pickSite, REVALIDATE_SECONDS} from "@/src/utils/fetchData";
 
-function Error404({favicon, headerFooter, meta}) {
+function Error404({site, meta}) {
     return (<Layout
-        headerIcon={headerFooter.global.icon.site_logo}
-        favicon={favicon.global.icon}
-        headerFooter={headerFooter.global.menu || {}}
-        socialAccounts={headerFooter.global.social || {}}
+        headerIcon={site.global.icon.site_logo}
+        favicon={site.global.icon}
+        headerFooter={site.global.menu || {}}
+        socialAccounts={site.global.social || {}}
         siteTitle={'404'}
         metaData={meta}>
         <div className="h-screen w-full flex flex-col justify-center items-center">
@@ -41,7 +41,7 @@ export async function getStaticProps() {
     const data = await fetchCommonData();
     return {
         props: {
-            meta: data?.pages?.homepage?.yoast_meta ?? {}, favicon: data ?? {}, headerFooter: data ?? {},
-        }, revalidate: 1,
+            meta: data?.pages?.homepage?.yoast_meta ?? {}, site: pickSite(data),
+        }, revalidate: REVALIDATE_SECONDS,
     }
 }
