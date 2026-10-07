@@ -3,7 +3,7 @@
  * WordPress → محصولات فروشگاه → تنظیمات فروشگاه; empty fields fall back to these.
  */
 export const DEFAULTS = {
-    store_name: 'محصولات وردپرس شایان',
+    store_name: 'WP OROD',
     store_tagline: 'قالب‌ها و افزونه‌های حرفه‌ای وردپرس، ساخته‌شده برای وب فارسی',
     hero_title: 'قالب و افزونه وردپرس، با کیفیتی که به آن اعتماد می‌کنید',
     hero_text:

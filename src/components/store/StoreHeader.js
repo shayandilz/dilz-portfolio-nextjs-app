@@ -7,7 +7,7 @@ export function StoreLogo({name}) {
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-700 text-lg font-black text-white" aria-hidden="true">
                 W
             </span>
-            <span className="text-base font-extrabold text-slate-900 md:text-sm">{name}</span>
+            <bdi className="text-base font-extrabold tracking-wide text-slate-900 md:text-sm">{name}</bdi>
         </Link>
     );
 }
